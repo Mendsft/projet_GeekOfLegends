@@ -4,7 +4,7 @@ import main
 import fonction as fct 
 
 class boss():
-    def __init__(self,nom,vie ,atk,enigme):
+    def __init__(self,nom,enigme,vie =int,atk = int):
         self.nom = nom 
         self.vie = vie 
         self.atk = atk
@@ -19,7 +19,7 @@ class boss():
             print(f"{self.nom} Here your enigma : {self.enigme} ")
         
 class heros():
-    def __init__(self,nom,vie,atk =int ):
+    def __init__(self,nom,vie = int,atk =int ):
         self.nom = nom 
         self.vie = vie 
         self.atk = atk 
@@ -28,7 +28,7 @@ class heros():
         pass
     
 class guerrier (heros):
-    def __init__(self, nom, vie, atk,rage =int ):
+    def __init__(self, nom, vie = int, atk = int ,rage =int ):
         super().__init__(nom, vie, atk)
         self.rage = rage
         
@@ -41,7 +41,7 @@ class guerrier (heros):
             return self.atk * 1.25
 
 class mage (heros):
-    def __init__(self, nom, vie, atk, mana =int):
+    def __init__(self, nom, vie = int , atk =int , mana =int):
         super().__init__(nom, vie, atk)
         self.mana = mana
         
@@ -57,7 +57,7 @@ class mage (heros):
             self.mana += 7
     
 class archer (heros):
-    def __init__(self, nom, vie, atk, fleche = int):
+    def __init__(self, nom, vie = int, atk = int, fleche = int):
         super().__init__(nom, vie, atk)
         self.fleche = fleche 
     
