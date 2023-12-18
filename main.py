@@ -19,12 +19,22 @@ archer = cls.archer("Archer",None,60,6,10)
 
 list_boss = [sauron,chronos,lilith]
 list_heros = [guerrier,mage,archer]
+# Stocker les enigmes dans un dico afin de faire correspondre plus tard la keys la value OU créer une classe enigme 
+list_enigme = {
+    'enigme1':'peter',
+    'enigme2':'feter',
+    'enigme3':'reter',
+}
 
 def game ():
     fct.intro()
-    fct.choix_boss(list_boss)
+    boss = fct.choix_boss(list_boss)
     fct.nom_hero(list_heros)
 
 # game()
 
-fct.choix_posture(guerrier)
+# fct.choix_posture(guerrier)
+a=fct.choix_boss(list_boss,list_enigme) #pour avoir le nom du boss qui se trouve dans une liste
+print(a[0])
+
+
