@@ -1,6 +1,6 @@
 import random
 import time
-import main 
+# import main 
 import fonction as fct 
 
 class boss():
@@ -18,14 +18,23 @@ class boss():
         if self.vie <= (vie*20)/100:
             print(f"{self.nom} Here your enigma : {self.enigme} ")
         
+    def __repr__(self):
+        return self.nom
 class heros():
     def __init__(self,nom,vie = int,atk =int ):
         self.nom = nom 
         self.vie = vie 
         self.atk = atk 
-        
+    
+    def mourrir (self):
+        if self.vie < 0 :
+            print(f"{self.nom} is dead because he didn't have enough life point")  
+                  
     def posture (self):
         pass
+    
+    def __repr__(self):
+        return self.nom
     
 class guerrier (heros):
     def __init__(self, nom, vie = int, atk = int ,rage =int ):
