@@ -1,4 +1,7 @@
 import random
 import time
-import fonction
-import class_c
+import fonction as fct
+import class_c as cls 
+
+
+# Création des variables : 
