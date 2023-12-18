@@ -11,9 +11,9 @@ chronos = cls.boss("Chronos","",400,7)
 lilith = cls.boss("Lilith","",250,12)
 
 # Héros 
-guerrier = cls.guerrier("Guerrier",100,5,0)
-mage = cls.mage("Mage",80,7,10)
-archer = cls.archer("Archer",60,6,10)
+guerrier = cls.guerrier("Guerrier",None,100,8,0)
+mage = cls.mage("Mage",None,80,7,10)
+archer = cls.archer("Archer",None,60,6,10)
 
 # Création des variables : 
 
@@ -25,4 +25,6 @@ def game ():
     fct.choix_boss(list_boss)
     fct.nom_hero(list_heros)
 
-game()
+# game()
+
+fct.choix_posture(guerrier)

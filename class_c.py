@@ -21,24 +21,27 @@ class boss():
     def __repr__(self):
         return self.nom
 class heros():
-    def __init__(self,nom,vie = int,atk =int ):
+    def __init__(self,nom,posture ="",vie = int,atk =int ):
         self.nom = nom 
         self.vie = vie 
         self.atk = atk 
-    
+        self.posture = posture
+        
     def mourrir (self):
         if self.vie < 0 :
             print(f"{self.nom} is dead because he didn't have enough life point")  
-                  
-    def posture (self):
-        pass
-    
+    def posture(self,boss) :
+        if self.posture == "Attaque":
+            return self.atk * 1.4
+        elif self.posture == "Défense":
+            return boss.atk / 2
+
     def __repr__(self):
         return self.nom
     
 class guerrier (heros):
-    def __init__(self, nom, vie = int, atk = int ,rage =int ):
-        super().__init__(nom, vie, atk)
+    def __init__(self, nom,posture ="",vie = int, atk = int ,rage =int ):
+        super().__init__(nom,posture, vie, atk)
         self.rage = rage
         
     def attaque_guerrier(self,ennemi):
@@ -50,8 +53,8 @@ class guerrier (heros):
             return self.atk * 1.25
 
 class mage (heros):
-    def __init__(self, nom, vie = int , atk =int , mana =int):
-        super().__init__(nom, vie, atk)
+    def __init__(self, nom,posture ="" ,vie = int , atk =int , mana =int):
+        super().__init__(nom,posture, vie, atk)
         self.mana = mana
         
     def attaque_mage(self,ennemi):
@@ -66,8 +69,8 @@ class mage (heros):
             self.mana += 7
     
 class archer (heros):
-    def __init__(self, nom, vie = int, atk = int, fleche = int):
-        super().__init__(nom, vie, atk)
+    def __init__(self, nom,posture ="", vie = int, atk = int, fleche = int):
+        super().__init__(nom,posture, vie, atk)
         self.fleche = fleche 
     
     def attaque_archer(self,ennemi):

@@ -18,4 +18,17 @@ def nom_hero(list_hero):
         name_choice = input(f"Please choice their name {hero} ")
         hero.nom = name_choice
         print(hero.nom)
-    
+
+def choix_posture(hero):
+    while True :
+        posture = str(input(f"Please choice your posture, fight(F) or defense(D) ")).lower().strip()
+        if posture == "f":
+            hero.posture = "Attaque"
+            print(hero.posture)
+            
+            return hero.posture
+        elif posture == "d":
+            hero.posture = "Défense"
+            print(hero.posture)
+            
+            return hero.posture
