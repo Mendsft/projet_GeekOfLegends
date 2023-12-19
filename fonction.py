@@ -95,7 +95,6 @@ def tour (boss,list_hero,guerrier,mage,archer):
             if aim.vie <= 0 :
                 print(f"{boss.nom} a tué {aim.vie} ,vie de la cible {aim.vie}")
                 list_hero.remove(aim)
-                
             else:
                 print(f"degats du boss {boss.atk}, vie de la cible {aim.vie}")
                 

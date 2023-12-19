@@ -15,6 +15,8 @@ guerrier = cls.guerrier("Guerrier","Défense",100,8,0)
 mage = cls.mage("Mage",None,80,9,10)
 archer = cls.archer("Archer",None,60,6,10)
 
+# Lieu 
+cimetiere =cls.Lieu("Cimetière ",[])
 # Création des variables : 
 
 list_boss = [sauron,chronos,lilith]

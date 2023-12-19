@@ -1,5 +1,6 @@
 import random
 import time
+from typing import Any
 # import main 
 import fonction as fct 
 
@@ -89,5 +90,10 @@ class archer (heros):
                 self.fleche += 6
             print(f"you regen your bow, you have 6 , here your bow {self.fleche}")
 
-        
+class Lieu ():
+    def __init__(self,nom, lieu = []):
+        self.nom = nom
+        self.lieu = lieu 
+    def __repr__(self):
+        return self.nom
         
