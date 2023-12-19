@@ -1,6 +1,4 @@
 import random
-import time
-import class_c as cls 
 
 
 def intro ():
@@ -20,7 +18,6 @@ def nom_hero(list_hero):
         name_choice = input(f"Please choice their name {hero} ")
         hero.nom = name_choice
         print(hero.nom)
-
     print(f"Here your hero's name : {list_hero}")
         
 def choix_posture(hero,boss):
@@ -34,22 +31,19 @@ def choix_posture(hero,boss):
             return hero.posture
         elif posture == "d":
             hero.posture = "Défense"
-            # hero.posture(boss)
             print(hero.posture)
             return hero.posture
         
-def enigme(boss):
-
+def enigme(boss,cimetiere):
     essais = 3
     while essais > 0:
-        enigme_reponse = str(input(f"Here your enigm {boss.enigme}\n you have {essais}try to find it or you loose : :  ")).strip().lower()
-        
+        enigme_reponse = str(input(f"Here your enigm {boss.enigme[0]}\n you have {essais} try to find it or you loose : :  ")).strip().lower()
         if enigme_reponse != boss.enigme[1]:
             essais -= 1
             print(f"You re wrong ! You have {essais} left to find it  ")
-
         elif enigme_reponse == boss.enigme[1]:
             print("You won .. GG ")
+            cimetiere.lieu.append(boss)
             return True
     else :
         print("You loose the game  ... MOUHAHAHHA")
@@ -64,8 +58,8 @@ def tour (boss,list_hero,guerrier,mage,archer,cimetiere,list_enigme,list_boss):
     reset_atk_boss = boss.atk
     vie_base_boss = boss.vie
     while boss.vie > 0 or len(list_hero) >0 : 
-        print(f"----------------------Debut du {nbr_tour} tours -------------------")
         for hero in list_hero:
+            print(f"----------------------Debut du {nbr_tour} tours -------------------")
             print(f"For this round will fight one by one  , the next to play is: {hero}")
             posture =choix_posture(hero,boss)
             if hero == guerrier:
@@ -98,12 +92,9 @@ def tour (boss,list_hero,guerrier,mage,archer,cimetiere,list_enigme,list_boss):
                     
         if boss.vie < (vie_base_boss * 0.2):
             print("--------------test---------------")
-            enigme(boss)
+            enigme(boss,cimetiere)
             if enigme == False  or True:
                 break
-
-            
-            
         elif boss.vie <=0 :
             print(f"GG ! , you fought the boss !!")
             break
@@ -118,7 +109,9 @@ def tour (boss,list_hero,guerrier,mage,archer,cimetiere,list_enigme,list_boss):
             if aim.vie <= 0 :
                 print(f"{boss.nom} a tué {aim.vie} ,vie de la cible {aim.vie}")
                 list_hero.remove(aim)
+                print(list_hero)
                 cimetiere.lieu.append(aim)
+                print(cimetiere.lieu)
             else:
                 print(f"degats du boss {boss.atk}, vie de la cible {aim.vie}") 
         nbr_tour +=1
@@ -126,4 +119,7 @@ def tour (boss,list_hero,guerrier,mage,archer,cimetiere,list_enigme,list_boss):
         guerrier.atk = reset_atk_guerrier
         mage.atk = reset_atk_mage
         boss.atk = reset_atk_boss
-        print(f"-----------------------Fin du tour {nbr_tour}---------------------")
+        print(f"----------------------- Fin du tour {nbr_tour} ---------------------")
+# Rajout fonction display les personnags et leurs point de vie et atk a la fin de chaque tour 
+# rajout fonction display de l enigme 
+# rajout fonction display endgame 

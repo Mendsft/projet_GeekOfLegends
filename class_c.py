@@ -1,7 +1,4 @@
-import random
-import time
 from typing import Any
-# import main 
 import fonction as fct 
 
 class boss():

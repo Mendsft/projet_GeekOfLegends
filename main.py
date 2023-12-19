@@ -1,14 +1,13 @@
-import random
-import time
+
 import fonction as fct
 import class_c as cls 
 
 # Instanciation 
 
 # Boss
-sauron = cls.boss("Sauron",{},350,10)
-chronos = cls.boss("Chronos",{},400,10)
-lilith = cls.boss("Lilith",{},250,10)
+sauron = cls.boss("Sauron",{},350,50)
+chronos = cls.boss("Chronos",{},400,50)
+lilith = cls.boss("Lilith",{},250,50)
 
 # Héros 
 guerrier = cls.guerrier("Guerrier","Défense",100,8,0)
@@ -21,11 +20,12 @@ cimetiere =cls.Lieu("Cimetière ",[])
 
 list_boss = [sauron,chronos,lilith]
 list_heros = [guerrier,mage,archer]
+
 # Stocker les enigmes dans un dico afin de faire correspondre plus tard la keys la value OU créer une classe enigme 
 list_enigme = {
-    'enigme1':'peter',
-    'enigme2':'feter',
-    'enigme3':'reter',
+    "Qu'est-ce qui peut être dans la mer et dans le ciel ?":'etoile',
+    "Qu'est-ce qui fait le tour de la maison sans bouger ?":'mur',
+    "Qu'est-ce qui est plein de trous mais arrive quand même à retenir l'eau ?":'eponge',
 }
 
 def game ():
@@ -35,7 +35,3 @@ def game ():
     fct.tour(boss_select,list_heros,guerrier,mage,archer,cimetiere,list_enigme,list_boss)
 
 game()
-
-
-
-
