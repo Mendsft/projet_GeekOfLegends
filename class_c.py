@@ -5,7 +5,7 @@ from typing import Any
 import fonction as fct 
 
 class boss():
-    def __init__(self,nom,enigme,vie =int,atk = int):
+    def __init__(self,nom,enigme={},vie =int,atk = int):
         self.nom = nom 
         self.vie = vie 
         self.atk = atk
@@ -17,7 +17,7 @@ class boss():
     
     def enigme_boss(self,vie):
         if self.vie <= (vie*20)/100:
-            print(f"{self.nom} Here your enigma : {self.enigme} ")
+            print(f"----------------{self.nom} :  Here your enigma : {self.enigme} ---------------")
         
     def __repr__(self):
         return self.nom

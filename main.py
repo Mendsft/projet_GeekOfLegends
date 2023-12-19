@@ -6,9 +6,9 @@ import class_c as cls
 # Instanciation 
 
 # Boss
-sauron = cls.boss("Sauron","",350,10)
-chronos = cls.boss("Chronos","",400,10)
-lilith = cls.boss("Lilith","",250,10)
+sauron = cls.boss("Sauron",{},350,10)
+chronos = cls.boss("Chronos",{},400,10)
+lilith = cls.boss("Lilith",{},250,10)
 
 # Héros 
 guerrier = cls.guerrier("Guerrier","Défense",100,8,0)
@@ -30,12 +30,12 @@ list_enigme = {
 
 def game ():
     fct.intro()
-    a=fct.choix_boss(list_boss,list_enigme) #pour avoir le nom du boss qui se trouve dans une liste
-    print(a[0])
+    boss_select=fct.choix_boss(list_boss,list_enigme) #pour avoir le nom du boss qui se trouve dans une liste
     fct.nom_hero(list_heros)
-    fct.tour(sauron,list_heros,guerrier,mage,archer)
+    fct.tour(boss_select,list_heros,guerrier,mage,archer,cimetiere,list_enigme,list_boss)
 
 game()
+
 
 
 

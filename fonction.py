@@ -9,9 +9,9 @@ def intro ():
 def choix_boss(list_boss,list_enigme):
     boss_fight = random.choice(list_boss)
     print(f"For this game, you will fight {boss_fight}")
-    boss_fight.enigme = random.choice(list(list_enigme.keys()))
+    boss_fight.enigme = random.choice(list(list_enigme.items()))
     print(boss_fight.enigme)
-    return boss_fight,boss_fight.enigme
+    return boss_fight
 
 def nom_hero(list_hero):
     print(f"Here you ar the hero you will play : {list_hero} \n")
@@ -38,7 +38,25 @@ def choix_posture(hero,boss):
             print(hero.posture)
             return hero.posture
         
-def tour (boss,list_hero,guerrier,mage,archer):
+def enigme(boss):
+
+    essais = 3
+    while essais > 0:
+        enigme_reponse = str(input(f"Here your enigm {boss.enigme}\n you have {essais}try to find it or you loose : :  ")).strip().lower()
+        
+        if enigme_reponse != boss.enigme[1]:
+            essais -= 1
+            print(f"You re wrong ! You have {essais} left to find it  ")
+
+        elif enigme_reponse == boss.enigme[1]:
+            print("You won .. GG ")
+            return True
+    else :
+        print("You loose the game  ... MOUHAHAHHA")
+        return False
+        
+def tour (boss,list_hero,guerrier,mage,archer,cimetiere,list_enigme,list_boss):
+    boss = choix_boss(list_boss,list_enigme)
     nbr_tour = 1
     reset_atk_guerrier = list_hero[0].atk
     reset_atk_mage = list_hero[1].atk
@@ -53,7 +71,7 @@ def tour (boss,list_hero,guerrier,mage,archer):
             if hero == guerrier:
                 if posture == "Attaque":
                     hero.attaque_guerrier(boss)
-                    print(f" attaque du hero {hero.atk}, vie du boss{boss.vie},")
+                    print(f" attaque du hero {hero.atk}, vie du boss :{boss.vie},")
                     if boss.vie <= 0 :
                         break
                 elif posture == "Défense":
@@ -62,7 +80,7 @@ def tour (boss,list_hero,guerrier,mage,archer):
             if hero == mage:
                 if posture == "Attaque":
                     hero.attaque_mage(boss)
-                    print(f" attaque du hero {hero.atk}, vie du boss{boss.vie},")
+                    print(f" attaque du hero {hero.atk}, vie du boss :{boss.vie},")
                     if boss.vie <=0:
                         break
                 elif posture =="Défense":
@@ -71,34 +89,41 @@ def tour (boss,list_hero,guerrier,mage,archer):
             if hero == archer:
                 if posture == "Attaque":
                     hero.attaque_archer(boss)
-                    print(f" attaque du hero {hero.atk}, vie du boss{boss.vie},")
+                    print(f" attaque du hero :{hero.atk}, vie du boss : {boss.vie},")
                     if boss.vie <=0 :
                         break
                 elif posture =="Défense":
                     boss.atk = reset_atk_boss
                     hero.postures(boss)
+                    
         if boss.vie < (vie_base_boss * 0.2):
             print("--------------test---------------")
+            enigme(boss)
+            if enigme == False  or True:
+                break
+
             
-            if boss.vie <=0 :
-                print(f"GG ! , you fought the boss !!")
-                break
-            elif len(list_hero) == 0:
-                print("Everybody is dead .. You LOOSE ")
-                break
-            else:    
-                print("Its the end of heros'tours , now it's BOSS TIME ")
-                aim = random.choice(list_hero)
-                boss.atk_boss(aim)
-                if aim.vie <= 0 :
-                    print(f"{boss.nom} a tué {aim.vie} ,vie de la cible {aim.vie}")
-                    list_hero.remove(aim)
-                else:
-                    print(f"degats du boss {boss.atk}, vie de la cible {aim.vie}") 
+            
+        elif boss.vie <=0 :
+            print(f"GG ! , you fought the boss !!")
+            break
+        elif len(list_hero) == 0:
+            print("Everybody is dead .. You LOOSE ")
+            print(cimetiere.lieu)
+            break
+        else:    
+            print("Its the end of heros'tours , now it's BOSS TIME ")
+            aim = random.choice(list_hero)
+            boss.atk_boss(aim)
+            if aim.vie <= 0 :
+                print(f"{boss.nom} a tué {aim.vie} ,vie de la cible {aim.vie}")
+                list_hero.remove(aim)
+                cimetiere.lieu.append(aim)
+            else:
+                print(f"degats du boss {boss.atk}, vie de la cible {aim.vie}") 
         nbr_tour +=1
         archer.atk = reset_atk_archer
         guerrier.atk = reset_atk_guerrier
         mage.atk = reset_atk_mage
         boss.atk = reset_atk_boss
         print(f"-----------------------Fin du tour {nbr_tour}---------------------")
-
