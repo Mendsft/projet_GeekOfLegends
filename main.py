@@ -6,9 +6,9 @@ import class_c as cls
 # Instanciation 
 
 # Boss
-sauron = cls.boss("Sauron","",350,50)
-chronos = cls.boss("Chronos","",400,70)
-lilith = cls.boss("Lilith","",250,50)
+sauron = cls.boss("Sauron","",350,10)
+chronos = cls.boss("Chronos","",400,10)
+lilith = cls.boss("Lilith","",250,10)
 
 # Héros 
 guerrier = cls.guerrier("Guerrier","Défense",100,8,0)
