@@ -6,13 +6,13 @@ import class_c as cls
 # Instanciation 
 
 # Boss
-sauron = cls.boss("Sauron","",350,10)
-chronos = cls.boss("Chronos","",400,7)
-lilith = cls.boss("Lilith","",250,12)
+sauron = cls.boss("Sauron","",350,50)
+chronos = cls.boss("Chronos","",400,70)
+lilith = cls.boss("Lilith","",250,50)
 
 # Héros 
-guerrier = cls.guerrier("Guerrier",None,100,8,0)
-mage = cls.mage("Mage",None,80,7,10)
+guerrier = cls.guerrier("Guerrier","Défense",100,8,0)
+mage = cls.mage("Mage",None,80,9,10)
 archer = cls.archer("Archer",None,60,6,10)
 
 # Création des variables : 
@@ -28,13 +28,12 @@ list_enigme = {
 
 def game ():
     fct.intro()
-    boss = fct.choix_boss(list_boss)
+    a=fct.choix_boss(list_boss,list_enigme) #pour avoir le nom du boss qui se trouve dans une liste
+    print(a[0])
     fct.nom_hero(list_heros)
+    fct.tour(sauron,list_heros,guerrier,mage,archer)
 
-# game()
+game()
 
-# fct.choix_posture(guerrier)
-a=fct.choix_boss(list_boss,list_enigme) #pour avoir le nom du boss qui se trouve dans une liste
-print(a[0])
 
 
