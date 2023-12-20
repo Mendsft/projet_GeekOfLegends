@@ -56,7 +56,16 @@ def verif_type_arme(hero,choix,shop):
     if hero.type == choix.type and hero.argent >= choix.prix:
         shop.vendre_arme(hero,choix)
         print ("c'est ok ")
+    elif hero.type != choix.type :
+        print("Vous ne pouvez pas acheter cette objet")
+    elif hero.argent < choix.prix :
+        print("Vous avez pas assez d'argent ")
+        
+def verif_type_objet(hero,choix,shop):
     
+    if hero.type in choix.type and hero.argent >= choix.prix:
+        shop.vendre_objet(hero,choix)
+        print ("c'est ok ")
     elif hero.type != choix.type :
         print("Vous ne pouvez pas acheter cette objet")
     elif hero.argent < choix.prix :
@@ -90,16 +99,42 @@ def display_shopping(shop,list_heros,list_objet):
                 elif choix == "3":
                     choix = shop.armes[2]
                     verif_type_arme(hero,choix,shop)
+                    
                 elif choix == "4":
                     affichage = str(input(f"Enter what do you want to see : \n 1 : Armes \n 2 : Objets \n 3 : Exit \n ")).strip()
                         
               
                 
             elif affichage == "2" :
-                for number, objet in enumerate(shop.objets):
-                    print('{0}. {1}'.format(number+1, repr(objet)))
-                # print(i,"Exit")
+                for (i, item) in enumerate(shop.objets, start=1):
+                    print(i, item)
+                    print(item.type)
+                    
+                print(i+1,"Exit")
                 print("")
+
+                choix = str(input("Choose your item : "))
+                
+                if choix == "1":
+                    choix = shop.objets[0]
+                    verif_type_objet(hero,choix,shop)
+                    print()
+                        
+                elif choix == "2":
+                    choix = shop.objets[1]
+                    verif_type_objet(hero,choix,shop)
+
+                        
+                elif choix == "3":
+                    choix = shop.objets[2]
+                    verif_type_objet(hero,choix,shop)
+                    
+                elif choix == "4":
+                    choix = shop.objets[3]
+                    verif_type_objet(hero,choix,shop)
+                    
+                elif choix == "5":
+                    affichage = str(input(f"Enter what do you want to see : \n 1 : Armes \n 2 : Objets \n 3 : Exit \n ")).strip()
                     
                     
                     
@@ -111,6 +146,7 @@ def display_shopping(shop,list_heros,list_objet):
         
     for hero in list_heros:
         print(hero.armes)
+        print(hero.inventaire)
         
 def tour (boss,list_hero,guerrier,mage,archer,cimetiere,list_enigme,list_boss):
     boss = choix_boss(list_boss,list_enigme)

@@ -10,9 +10,9 @@ chronos = cls.boss("Chronos",{},400,10)
 lilith = cls.boss("Lilith",{},250,10)
 
 # Héros 
-guerrier = cls.guerrier("Guerrier",[],100,[],"guerrier","",100,8,0)
-mage = cls.mage("Mage",[],100,[],"mage","",80,9,10)
-archer = cls.archer("Archer",[],100,[],"archer","",60,6,10)
+guerrier = cls.guerrier("Guerrier",[],200,[],"guerrier","",200,8,0)
+mage = cls.mage("Mage",[],200,[],"mage","",180,9,10)
+archer = cls.archer("Archer",[],200,[],"archer","",160,6,10)
 
 # Lieu 
 cimetiere =cls.Lieu("Cimetière ",[])
@@ -24,10 +24,10 @@ epee = cls.Armes("Sabre",15,"guerrier",100)
 arc = cls.Armes("ShieldBow",14,"archer",100)
 
 # Objets ◊
-potion_vie =  cls.Objet("Potion de vie","Augmente la vie de 50 PV ","",20)
-potion_rage =  cls.Objet("Potion de rage","Augmente les degats de 1 par nombres de rage ",guerrier,20)
-potion_mana =  cls.Objet("Potion de mana","Augmente la mana de 15",mage,20)
-potion_fleche =  cls.Objet("Potion de fleche","Augmente les fleches de 10 ",archer,20)
+potion_vie =  cls.Objet("Potion de vie","Augmente la vie de 50 PV ","guerrier,mage,archer",20)
+potion_rage =  cls.Objet("Potion de rage","Augmente les degats de 1 par nombres de rage ","guerrier",20)
+potion_mana =  cls.Objet("Potion de mana","Augmente la mana de 15","mage",20)
+potion_fleche =  cls.Objet("Potion de fleche","Augmente les fleches de 10 ","archer",20)
 
 
 # Création des variables : 

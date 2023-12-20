@@ -118,7 +118,7 @@ class Shop (Lieu):
         self.caisse +=_item.prix    
             
     def vendre_objet (self,_hero,_item):
-        self.objets.remove(_item)
+        # self.objets.remove(_item)
         _hero.inventaire.append(_item)
         _hero.argent -= _item.prix 
         self.caisse +=_item.prix
@@ -143,6 +143,7 @@ class Objet():
         self.nom = nom
         self.effets = effets
         self.type = type
+        self.prix = prix
 
     def popo_vie(self):
         self.vie +=50
