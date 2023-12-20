@@ -38,9 +38,10 @@ class heros():
         return self.nom
     
 class guerrier (heros):
-    def __init__(self, nom,posture ="",vie = int, atk = int ,rage =int ):
+    def __init__(self, nom,type= "guerrier",posture ="",vie = int, atk = int ,rage =int ):
         super().__init__(nom,posture, vie, atk)
         self.rage = rage
+        self.type = type
         
     def attaque_guerrier(self,ennemi):
         print(f"Voici le nombre de rage {self.rage}")
@@ -54,9 +55,10 @@ class guerrier (heros):
         self.rage+=1
 
 class mage (heros):
-    def __init__(self, nom,posture ="" ,vie = int , atk =int , mana =int):
+    def __init__(self, nom,type="mage",posture ="" ,vie = int , atk =int , mana =int):
         super().__init__(nom,posture, vie, atk)
         self.mana = mana
+        self.type = type
         
             
     def attaque_mage(self,ennemi):
@@ -72,9 +74,10 @@ class mage (heros):
             print(f"You regen 7 mana , here your mana {self.mana} ")
     
 class archer (heros):
-    def __init__(self, nom,posture ="", vie = int, atk = int, fleche = int):
+    def __init__(self, nom,type = "archer" ,posture ="", vie = int, atk = int, fleche = int):
         super().__init__(nom,posture, vie, atk)
-        self.fleche = fleche 
+        self.fleche = fleche
+        self.type = type
     
     def attaque_archer(self,ennemi):
         print(f"voici le nombre de fleche {self.fleche}")
@@ -93,4 +96,21 @@ class Lieu ():
         self.lieu = lieu 
     def __repr__(self):
         return self.nom
+class Shop (Lieu):
+    def __init__(self, nom, lieu=[],armes = [],objets=[]):
+        super().__init__(nom, lieu)
+        self.armes = armes
+        self.objets = objets 
+class Armes ():
+    def __init__(self,nom,atk,type):
+        self.nom = nom
+        self.atk = atk 
+        self.type = type 
+        
+    def __repr__(self):
+        self.nom
+        
+class ArmesAmerliore(Armes):
+    def __init__(self, nom, atk, type):
+        super().__init__(nom, atk, type)
         
