@@ -114,3 +114,11 @@ class ArmesAmerliore(Armes):
     def __init__(self, nom, atk, type):
         super().__init__(nom, atk, type)
         
+class Objet():
+    def __init__(self,nom,effets):
+        self.nom = nom
+        self.effets = effets
+
+    def __repr__(self):
+        self.nom
+        

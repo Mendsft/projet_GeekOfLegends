@@ -23,6 +23,8 @@ baguette = cls.Armes("archmage",12,"mage")
 epee = cls.Armes("Sabre",15,"guerrier")
 archer = cls.Armes("ShieldBow",14,"archer")
 
+# Objets 
+objets =  cls.obet
 
 
 # Création des variables : 
