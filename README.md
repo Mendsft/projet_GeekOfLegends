@@ -103,3 +103,16 @@ Ces étapes devraient vous guider pour créer un jeu interactif et engageant en 
  
 
 BON COURAGE ! 
+
+Rajout d'un attribut pour le héros : argent
+__shop :__ création de shop qui permettra à un héros d'acheter une arme (si l argent suffit). 
+Option 1) voir tout le panier.
+Option 2) acheter.
+Option 3) vendre (-15% sur l'achat de base + un random (0-60)). ex : 100 - 15% - random -> 33% = 100 - 48% = 52 à la vente.
+Ce random se fait après chaque round (on en parle apres)
+Option 4) exit.
+comprendre qu'il y a des types d'armes càd une arme par type de héros.
+Le heros ne peut pas posséder plusieurs arme (sauf si vous rajouter un heors qui a cette capacité.) et doit s’équiper de celle qu'il achète.. se déséquiper de l'ancienne.
+
+__Forgeron :__ Creation d'une forge où le forgeron -> pourra ameliore votre arme si vous le payez et si vous avez l'equipement necessaire
+Option 1)  

@@ -10,9 +10,9 @@ chronos = cls.boss("Chronos",{},400,10)
 lilith = cls.boss("Lilith",{},250,10)
 
 # Héros 
-guerrier = cls.guerrier("Guerrier","guerrier","Défense",100,8,0)
-mage = cls.mage("Mage","mage",None,80,9,10)
-archer = cls.archer("Archer","archer",None,60,6,10)
+guerrier = cls.guerrier("Guerrier",[],"guerrier","Défense",100,8,0)
+mage = cls.mage("Mage",[],"mage",None,80,9,10)
+archer = cls.archer("Archer",[],"archer",None,60,6,10)
 
 # Lieu 
 cimetiere =cls.Lieu("Cimetière ",[])
@@ -24,14 +24,18 @@ epee = cls.Armes("Sabre",15,"guerrier")
 archer = cls.Armes("ShieldBow",14,"archer")
 
 # Objets 
-objets =  cls.obet
+potion_vie =  cls.Objet("Potion de vie","Augmente la vie de 50 PV ")
+potion_rage =  cls.Objet("Potion de rage","Augmente les degats de 1 par nombres de rage ",guerrier)
+potion_mana =  cls.Objet("Potion de mana","Augmente la mana de 15",mage)
+potion_fleche =  cls.Objet("Potion de fleche","Augmente les fleches de 10 ",archer)
 
 
 # Création des variables : 
 
 list_boss = [sauron,chronos,lilith]
 list_heros = [guerrier,mage,archer]
-list_armes =[baguette,epee,archer]
+list_armes = [baguette,epee,archer]
+list_objets =[potion_vie,potion_rage,potion_mana,potion_fleche]
 
 # Stocker les enigmes dans un dico afin de faire correspondre plus tard la keys la value OU créer une classe enigme 
 list_enigme = {

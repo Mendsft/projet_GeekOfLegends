@@ -19,11 +19,12 @@ class boss():
     def __repr__(self):
         return self.nom
 class heros():
-    def __init__(self,nom,posture ="",vie = int,atk =int ):
+    def __init__(self,nom,inventaire = [],posture ="",vie = int,atk =int ):
         self.nom = nom 
         self.vie = vie 
         self.atk = atk 
         self.posture = posture
+        self.inventaire = inventaire
         
     def mourrir (self):
         if self.vie < 0 :
@@ -38,8 +39,8 @@ class heros():
         return self.nom
     
 class guerrier (heros):
-    def __init__(self, nom,type= "guerrier",posture ="",vie = int, atk = int ,rage =int ):
-        super().__init__(nom,posture, vie, atk)
+    def __init__(self,nom,inventaire =[],type= "guerrier",posture ="",vie = int, atk = int ,rage =int ):
+        super().__init__(nom,inventaire,posture, vie, atk)
         self.rage = rage
         self.type = type
         
@@ -55,8 +56,8 @@ class guerrier (heros):
         self.rage+=1
 
 class mage (heros):
-    def __init__(self, nom,type="mage",posture ="" ,vie = int , atk =int , mana =int):
-        super().__init__(nom,posture, vie, atk)
+    def __init__(self, nom,inventaire =[],type="mage",posture ="" ,vie = int , atk =int , mana =int):
+        super().__init__(nom,inventaire,posture, vie, atk)
         self.mana = mana
         self.type = type
         
@@ -74,8 +75,8 @@ class mage (heros):
             print(f"You regen 7 mana , here your mana {self.mana} ")
     
 class archer (heros):
-    def __init__(self, nom,type = "archer" ,posture ="", vie = int, atk = int, fleche = int):
-        super().__init__(nom,posture, vie, atk)
+    def __init__(self, nom,inventaire =[],type = "archer" ,posture ="", vie = int, atk = int, fleche = int):
+        super().__init__(nom,inventaire,posture, vie, atk)
         self.fleche = fleche
         self.type = type
     
@@ -115,10 +116,15 @@ class ArmesAmerliore(Armes):
         super().__init__(nom, atk, type)
         
 class Objet():
-    def __init__(self,nom,effets):
+    def __init__(self,nom,effets,type = ""):
         self.nom = nom
         self.effets = effets
+        self.type = type
 
+    def popo_vie(self):
+        self.vie +=50
+        self.inventaire.remove(potion_vie)
+    
     def __repr__(self):
         self.nom
         
