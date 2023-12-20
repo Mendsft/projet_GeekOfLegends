@@ -10,9 +10,9 @@ chronos = cls.boss("Chronos",{},400,10)
 lilith = cls.boss("Lilith",{},250,10)
 
 # Héros 
-guerrier = cls.guerrier("Guerrier",[],"guerrier","Défense",100,8,0)
-mage = cls.mage("Mage",[],"mage",None,80,9,10)
-archer = cls.archer("Archer",[],"archer",None,60,6,10)
+guerrier = cls.guerrier("Guerrier",0,[],"guerrier","",100,8,0)
+mage = cls.mage("Mage",0,[],"mage","",80,9,10)
+archer = cls.archer("Archer",0,[],"archer","",60,6,10)
 
 # Lieu 
 cimetiere =cls.Lieu("Cimetière ",[])
@@ -21,7 +21,7 @@ shop = cls.Shop("Shop",["Vendeur"],[],[])
 # Armes 
 baguette = cls.Armes("archmage",12,"mage")
 epee = cls.Armes("Sabre",15,"guerrier")
-archer = cls.Armes("ShieldBow",14,"archer")
+arc = cls.Armes("ShieldBow",14,"archer")
 
 # Objets 
 potion_vie =  cls.Objet("Potion de vie","Augmente la vie de 50 PV ")
@@ -45,9 +45,13 @@ list_enigme = {
 }
 
 def game ():
+    fct.rajout(shop.armes,list_armes)
+    fct.rajout(shop.objets,list_objets)
     fct.intro()
     boss_select=fct.choix_boss(list_boss,list_enigme) #pour avoir le nom du boss qui se trouve dans une liste
     fct.nom_hero(list_heros)
+    fct.shopping(shop,list_heros)
     fct.tour(boss_select,list_heros,guerrier,mage,archer,cimetiere,list_enigme,list_boss)
 
 game()
+

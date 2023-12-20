@@ -1,4 +1,4 @@
-from typing import Any
+
 import fonction as fct 
 
 class boss():
@@ -19,12 +19,13 @@ class boss():
     def __repr__(self):
         return self.nom
 class heros():
-    def __init__(self,nom,inventaire = [],posture ="",vie = int,atk =int ):
+    def __init__(self,nom,argent =int,inventaire = [],posture ="",vie = int,atk =int ):
         self.nom = nom 
         self.vie = vie 
         self.atk = atk 
         self.posture = posture
         self.inventaire = inventaire
+        self.argent = argent
         
     def mourrir (self):
         if self.vie < 0 :
@@ -39,8 +40,8 @@ class heros():
         return self.nom
     
 class guerrier (heros):
-    def __init__(self,nom,inventaire =[],type= "guerrier",posture ="",vie = int, atk = int ,rage =int ):
-        super().__init__(nom,inventaire,posture, vie, atk)
+    def __init__(self,nom,argent=int,inventaire =[],type= "guerrier",posture ="",vie = int, atk = int ,rage =int ):
+        super().__init__(nom,argent,inventaire,posture, vie, atk)
         self.rage = rage
         self.type = type
         
@@ -54,10 +55,11 @@ class guerrier (heros):
             ennemi.vie -= self.atk
             
         self.rage+=1
-
+    def __repr__(self):
+        return self.nom
 class mage (heros):
-    def __init__(self, nom,inventaire =[],type="mage",posture ="" ,vie = int , atk =int , mana =int):
-        super().__init__(nom,inventaire,posture, vie, atk)
+    def __init__(self, nom,argent=int,inventaire =[],type="mage",posture ="" ,vie = int , atk =int , mana =int):
+        super().__init__(nom,argent,inventaire,posture, vie, atk)
         self.mana = mana
         self.type = type
         
@@ -73,10 +75,11 @@ class mage (heros):
             if self.mana < 2 :
                 self.mana += 7
             print(f"You regen 7 mana , here your mana {self.mana} ")
-    
+    def __repr__(self):
+        return self.nom
 class archer (heros):
-    def __init__(self, nom,inventaire =[],type = "archer" ,posture ="", vie = int, atk = int, fleche = int):
-        super().__init__(nom,inventaire,posture, vie, atk)
+    def __init__(self, nom,argent=int,inventaire =[],type = "archer" ,posture ="", vie = int, atk = int, fleche = int):
+        super().__init__(nom,argent,inventaire,posture, vie, atk)
         self.fleche = fleche
         self.type = type
     
@@ -90,7 +93,8 @@ class archer (heros):
             if self.fleche < 2 :
                 self.fleche += 6
             print(f"you regen your bow, you have 6 , here your bow {self.fleche}")
-
+    def __repr__(self):
+        return self.nom
 class Lieu ():
     def __init__(self,nom, lieu = []):
         self.nom = nom
@@ -102,6 +106,8 @@ class Shop (Lieu):
         super().__init__(nom, lieu)
         self.armes = armes
         self.objets = objets 
+
+
 class Armes ():
     def __init__(self,nom,atk,type):
         self.nom = nom
@@ -109,7 +115,7 @@ class Armes ():
         self.type = type 
         
     def __repr__(self):
-        self.nom
+        return self.nom
         
 class ArmesAmerliore(Armes):
     def __init__(self, nom, atk, type):
@@ -123,8 +129,8 @@ class Objet():
 
     def popo_vie(self):
         self.vie +=50
-        self.inventaire.remove(potion_vie)
+
     
     def __repr__(self):
-        self.nom
+        return self.nom
         

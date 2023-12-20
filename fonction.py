@@ -1,5 +1,8 @@
 import random
 
+def rajout (_shop_destination,_list_item):
+    for item in _list_item :
+        _shop_destination.append(item)
 
 def intro ():
     print("\nHello to GeeksOfLegends , in this game you will fight a boss between 3 terrible monster\n")
@@ -48,6 +51,26 @@ def enigme(boss,cimetiere):
     else :
         print("You loose the game  ... MOUHAHAHHA")
         return False
+     
+def shopping(shop,list_heros):
+    while True:
+        for hero in list_heros:
+            print(f"Welcome {hero} to my {shop} dear heros hopeless  ")
+            affichage = str(input(f"Enter what do you want to see : \n 1 : Armes \n 2 : Objets \n ")).strip()
+            if affichage == "1" :
+                for arme in (shop.armes):
+                    print(arme)
+                
+            elif affichage == "2" :
+                for objet in (shop.objets):
+                    print(objet)
+        return False
+        
+    print(f"Voici toutes les armes{shop.armes}")
+    print(f" Voici tous les objets{shop.objet}")
+         
+     
+     
         
 def tour (boss,list_hero,guerrier,mage,archer,cimetiere,list_enigme,list_boss):
     boss = choix_boss(list_boss,list_enigme)
@@ -109,6 +132,7 @@ def tour (boss,list_hero,guerrier,mage,archer,cimetiere,list_enigme,list_boss):
             aim = random.choice(list_hero)
             boss.atk_boss(aim)
             if aim.vie <= 0 :
+                aim.mourrir()
                 print(f"{boss.nom} a tué {aim} ,vie de la cible {aim.vie}")
                 list_hero.remove(aim)
                 print(list_hero)
