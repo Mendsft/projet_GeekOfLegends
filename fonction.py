@@ -51,78 +51,63 @@ def enigme(boss,cimetiere):
     else :
         print("You loose the game  ... MOUHAHAHHA")
         return False
-# def verif_type_arme(_hero,_objet):
-#     if _hero.type == _objet.type and _hero.argent >= _objet.prix:
-#         print ("c'est ok ")
-#     elif _hero.type != _objet.type :
-#         print("Vous ne pouvez pas acheter cette objet")
-#     elif _hero.argent < _objet.prix :
-#         print("Vous avez pas assez d'argent ")
+def verif_type_arme(hero,choix,shop):
+    
+    if hero.type == choix.type and hero.argent >= choix.prix:
+        shop.vendre_arme(hero,choix)
+        print ("c'est ok ")
+    
+    elif hero.type != choix.type :
+        print("Vous ne pouvez pas acheter cette objet")
+    elif hero.argent < choix.prix :
+        print("Vous avez pas assez d'argent ")
         
 def display_shopping(shop,list_heros,list_objet):
 
     for hero in list_heros :
         print(f"Welcome {hero} to my {shop} dear heros hopeless {hero.type} ")
         affichage = str(input(f"Enter what do you want to see : \n 1 : Armes \n 2 : Objets \n 3 : Exit \n ")).strip()
-        if affichage == "1" :
- 
-            for (i, item) in enumerate(shop.armes, start=1):
-                print(i, item)
-                print(item.type)
-                
-            print(i+1,"Exit")
-            print("")
+        while True : 
+            if affichage == "1" :
+                for (i, item) in enumerate(shop.armes, start=1):
+                    print(i, item)
+                    print(item.type)
+                    
+                print(i+1,"Exit")
+                print("")
 
-            choix = str(input("Choose your item : "))
-            
-            if choix == "1":
-                choix = shop.armes[0]
-                if hero.type == choix.type and hero.argent >= choix.prix:
-                    shop.vendre_arme(hero,choix)
-                    print ("c'est ok ")
-                elif hero.type != choix.type :
-                    print("Vous ne pouvez pas acheter cette objet")
-                elif hero.argent < choix.prix :
-                    print("Vous avez pas assez d'argent ")
+                choix = str(input("Choose your item : "))
                 
-            elif choix == "2":
-                choix = shop.armes[1]
-                if hero.type == choix.type and hero.argent >= choix.prix:
-                    shop.vendre_arme(hero,choix)
-                    print ("c'est ok ")
-                elif hero.type != choix.type :
-                    print("Vous ne pouvez pas acheter cette objet")
-                elif hero.argent < choix.prix :
-                    print("Vous avez pas assez d'argent ")
-            elif choix == "3":
-                choix = shop.armes[2]
-                if hero.type == choix.type and hero.argent >= choix.prix:
-                    shop.vendre_arme(hero,choix)
-                    print ("c'est ok ")
-                elif hero.type != choix.type :
-                    print("Vous ne pouvez pas acheter cette objet")
-                elif hero.argent < choix.prix :
-                    print("Vous avez pas assez d'argent ")
-            elif choix == "3":
+                if choix == "1":
+                    choix = shop.armes[0]
+                    verif_type_arme(hero,choix,shop)
+                        
+                elif choix == "2":
+                    choix = shop.armes[1]
+                    verif_type_arme(hero,choix,shop)
+
+                        
+                elif choix == "3":
+                    choix = shop.armes[2]
+                    verif_type_arme(hero,choix,shop)
+                elif choix == "4":
+                    affichage = str(input(f"Enter what do you want to see : \n 1 : Armes \n 2 : Objets \n 3 : Exit \n ")).strip()
+                        
+              
+                
+            elif affichage == "2" :
+                for number, objet in enumerate(shop.objets):
+                    print('{0}. {1}'.format(number+1, repr(objet)))
+                # print(i,"Exit")
+                print("")
+                    
+                    
+                    
+            elif affichage == "3":
+                print("")
+                print(f"{hero} est  sorti du shop")
+                print("")
                 break
-            
-        
-
-
-                
-        elif affichage == "2" :
-            for number, objet in enumerate(shop.objets):
-                print('{0}. {1}'.format(number+1, repr(objet)))
-            # print(i,"Exit")
-            print("")
-                
-                
-                
-        elif affichage == "3":
-            print("")
-            print("Vous etes sorti du shop")
-            print("")
-            return False
         
     for hero in list_heros:
         print(hero.armes)
