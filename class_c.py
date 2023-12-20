@@ -27,6 +27,14 @@ class heros():
         self.inventaire = inventaire
         self.argent = argent
         self.armes = armes
+    
+    def equiper_arme(self):
+        if len(self.armes) == 1:
+            print("j'ai une arme nen main")
+            for arme in self.armes :
+                self.atk = arme.atk
+        else:
+            print("You don't have weapons ")
         
     def mourrir (self):
         if self.vie < 0 :
@@ -122,8 +130,11 @@ class Shop (Lieu):
         _hero.inventaire.append(_item)
         _hero.argent -= _item.prix 
         self.caisse +=_item.prix
-
-
+        
+class Forgeron(Shop):
+    def __init__(self, nom, lieu=[], armes=[], caisse=int):
+        super().__init__(nom, lieu, armes,caisse)
+        
 class Armes ():
     def __init__(self,nom,atk,type,prix =int):
         self.nom = nom

@@ -54,4 +54,10 @@ def game ():
     fct.tour(boss_select,list_heros,guerrier,mage,archer,cimetiere,list_enigme,list_boss)
 
 game()
+# print(guerrier.atk)
+# guerrier.armes.append(epee)
+# print(guerrier.armes)
+# guerrier.equiper_arme()
+# print(guerrier.atk)
+
 
