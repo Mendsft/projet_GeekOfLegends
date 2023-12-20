@@ -19,13 +19,14 @@ class boss():
     def __repr__(self):
         return self.nom
 class heros():
-    def __init__(self,nom,argent =int,inventaire = [],posture ="",vie = int,atk =int ):
+    def __init__(self,nom,armes=[],argent =int,inventaire = [],posture ="",vie = int,atk =int ):
         self.nom = nom 
         self.vie = vie 
         self.atk = atk 
         self.posture = posture
         self.inventaire = inventaire
         self.argent = argent
+        self.armes = armes
         
     def mourrir (self):
         if self.vie < 0 :
@@ -40,8 +41,8 @@ class heros():
         return self.nom
     
 class guerrier (heros):
-    def __init__(self,nom,argent=int,inventaire =[],type= "guerrier",posture ="",vie = int, atk = int ,rage =int ):
-        super().__init__(nom,argent,inventaire,posture, vie, atk)
+    def __init__(self,nom,armes=[],argent=int,inventaire =[],type= "guerrier",posture ="",vie = int, atk = int ,rage =int ):
+        super().__init__(nom,armes,argent,inventaire,posture, vie, atk)
         self.rage = rage
         self.type = type
         
@@ -58,8 +59,8 @@ class guerrier (heros):
     def __repr__(self):
         return self.nom
 class mage (heros):
-    def __init__(self, nom,argent=int,inventaire =[],type="mage",posture ="" ,vie = int , atk =int , mana =int):
-        super().__init__(nom,argent,inventaire,posture, vie, atk)
+    def __init__(self, nom,armes=[],argent=int,inventaire =[],type="mage",posture ="" ,vie = int , atk =int , mana =int):
+        super().__init__(nom,armes,argent,inventaire,posture, vie, atk)
         self.mana = mana
         self.type = type
         
@@ -78,8 +79,8 @@ class mage (heros):
     def __repr__(self):
         return self.nom
 class archer (heros):
-    def __init__(self, nom,argent=int,inventaire =[],type = "archer" ,posture ="", vie = int, atk = int, fleche = int):
-        super().__init__(nom,argent,inventaire,posture, vie, atk)
+    def __init__(self, nom,armes=[],argent=int,inventaire =[],type = "archer" ,posture ="", vie = int, atk = int, fleche = int):
+        super().__init__(nom,armes,argent,inventaire,posture, vie, atk)
         self.fleche = fleche
         self.type = type
     
@@ -102,17 +103,33 @@ class Lieu ():
     def __repr__(self):
         return self.nom
 class Shop (Lieu):
-    def __init__(self, nom, lieu=[],armes = [],objets=[]):
+    def __init__(self, nom, lieu=[],armes = [],objets=[],caisse =int):
         super().__init__(nom, lieu)
         self.armes = armes
         self.objets = objets 
+        self.caisse = caisse 
+
+    def vendre_arme (self,_hero,_item):
+    
+        # print("Vous vendez une armes")
+        # self.armes.remove(_item)
+        _hero.armes.append(_item)
+        _hero.argent -= _item.prix 
+        self.caisse +=_item.prix    
+            
+    def vendre_objet (self,_hero,_item):
+        self.objets.remove(_item)
+        _hero.inventaire.append(_item)
+        _hero.argent -= _item.prix 
+        self.caisse +=_item.prix
 
 
 class Armes ():
-    def __init__(self,nom,atk,type):
+    def __init__(self,nom,atk,type,prix =int):
         self.nom = nom
         self.atk = atk 
         self.type = type 
+        self.prix = prix 
         
     def __repr__(self):
         return self.nom
@@ -122,7 +139,7 @@ class ArmesAmerliore(Armes):
         super().__init__(nom, atk, type)
         
 class Objet():
-    def __init__(self,nom,effets,type = ""):
+    def __init__(self,nom,effets,type = "",prix =int):
         self.nom = nom
         self.effets = effets
         self.type = type
