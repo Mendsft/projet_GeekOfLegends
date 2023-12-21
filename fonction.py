@@ -124,6 +124,9 @@ def display_shopping(shop,list_heros,forgeron):
                     verif_type_arme(hero,choix,shop)    
                 elif choix == "4":
                     affichage = str(input(f"Enter what do you want to see : \n 1 : Armes \n 2 : Objets \n 3 : Exit \n ")).strip()
+                else :
+                    choix = str(input("Choose your item : "))
+                    
                          
             elif affichage == "2" :
                 for (i, item) in enumerate(shop.objets, start=1):
@@ -147,7 +150,9 @@ def display_shopping(shop,list_heros,forgeron):
                     verif_type_objet(hero,choix,shop)
                 elif choix == "5":
                     affichage = str(input(f"Enter what do you want to see : \n 1 : Armes \n 2 : Objets \n 3 : Exit \n ")).strip()
-                          
+                else:
+                    choix = str(input("Choose your item : "))
+                           
             elif affichage == "3":
                 print("")
                 print(f"{hero} est  sorti du shop")
@@ -155,6 +160,10 @@ def display_shopping(shop,list_heros,forgeron):
                 break
             elif affichage == "4":
                 display_forgeron(forgeron,list_heros)
+            else:
+                affichage = str(input(f"Enter what do you want to see : \n 1 : Armes \n 2 : Objets \n 3 : Exit \n ")).strip()
+                
+                
     for hero in list_heros:
         print(hero.armes)
         print(hero.inventaire)
@@ -182,14 +191,19 @@ def display_forgeron (forgeron,list_heros):
                     choix = forgeron.armes[2]
                     verif_type_arme_ameliore(hero,choix,forgeron)    
                 elif choix == "4":
-                    affichage = str(input(f"Enter what do you want to see : \n 1 : Armes \n 2 : Exit \n ")).strip()         
+                    affichage = str(input(f"Enter what do you want to see : \n 1 : Armes \n 2 : Exit \n ")).strip() 
+                else :
+                    choix = str(input("Choose your item : "))
+                    
            
             elif affichage == "2":
                 print("")
                 print(f"{hero} est  sorti du forgeron")
                 print("")
                 break
-        
+            else :
+                affichage = str(input(f"Enter what do you want to see : \n 1 : Armes \n 2 : Exit \n ")).strip()
+                
     for hero in list_heros:
         print(hero.armes)
         print(hero.inventaire)
