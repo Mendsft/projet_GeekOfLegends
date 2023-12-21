@@ -2,7 +2,7 @@
 import fonction as fct
 import class_c as cls 
 
-# Instanciation 
+# Instanciation gu
 
 # Boss
 sauron = cls.boss("Sauron",{},350,10)
@@ -16,6 +16,7 @@ archer = cls.archer("Archer",[],200,[],"archer","",160,6,10)
 
 # Lieu 
 cimetiere =cls.Lieu("Cimetière ",[])
+boss_cimetier = cls.Lieu("Cimetiere des boss",[])
 shop = cls.Shop("Shop",["Vendeur"],[],[],100)
 forgeron = cls.Forgeron("Forgeron",["Ornn"],[],1000)
 
@@ -31,7 +32,7 @@ gros_arc = cls.ArmesAmerliore("Bowlder",20,"archer",200)
 
 # Objets ◊
 potion_vie =  cls.Objet("Potion de vie","Augmente la vie de 50 PV ","guerrier,mage,archer",20)
-potion_rage =  cls.Objet("Potion de rage","Augmente les degats de 1 par nombres de rage ","guerrier",20)
+potion_rage =  cls.Objet("Potion de rage","Augmente les degats de 2","guerrier",20)
 potion_mana =  cls.Objet("Potion de mana","Augmente la mana de 15","mage",20)
 potion_fleche =  cls.Objet("Potion de fleche","Augmente les fleches de 10 ","archer",20)
 
@@ -56,16 +57,28 @@ def game ():
     fct.rajout(shop.objets,list_objets)
     fct.rajout(forgeron.armes,list_armes_ameliore)
     fct.intro()
-    boss_select=fct.choix_boss(list_boss,list_enigme) #pour avoir le nom du boss qui se trouve dans une liste
     fct.nom_hero(list_heros)
-    fct.display_shopping(shop,list_heros)
-    fct.tour(boss_select,list_heros,guerrier,mage,archer,cimetiere,list_enigme,list_boss)
-
+    fct.display_shopping(shop,list_heros,forgeron)
+    print(list_boss)
+    for boss in list_boss:
+        boss=fct.choix_boss(list_boss,list_enigme,boss_cimetier) #pour avoir le nom du boss qui se trouve dans une liste
+        fct.tour(boss,list_heros,guerrier,mage,archer,cimetiere,boss_cimetier)
+        boss_cimetier.lieu.append(boss)
+        fct.display_forgeron(forgeron,list_heros)
+        print(f"{list_boss} ici dans la boucle main")
+    
+    boss=fct.choix_boss(list_boss,list_enigme,boss_cimetier) #pour avoir le nom du boss qui se trouve dans une liste
+    fct.tour(boss,list_heros,guerrier,mage,archer,cimetiere,boss_cimetier)
+    boss_cimetier.lieu.append(boss)
+    print(f"{list_boss} ici dans la boucle main")
+    
+    print("Fin de tous les boss")
 game()
 # print(guerrier.atk)
 # guerrier.armes.append(epee)
 # print(guerrier.armes)
 # guerrier.equiper_arme()
 # print(guerrier.atk)
+
 
 

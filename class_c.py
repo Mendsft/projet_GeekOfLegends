@@ -40,6 +40,8 @@ class heros():
             print("vous avez des objets :")
             for objet in self.inventaire :
                 print(objet)
+            print("What do you want to use ? : ")
+            
         else:
             print("You have nothings in your inventory")
     def mourrir (self):
@@ -124,9 +126,6 @@ class Shop (Lieu):
         self.caisse = caisse 
 
     def vendre_arme (self,_hero,_item):
-    
-        # print("Vous vendez une armes")
-        # self.armes.remove(_item)
         _hero.armes.append(_item)
         _hero.argent -= _item.prix 
         self.caisse +=_item.prix    
@@ -141,6 +140,11 @@ class Forgeron(Shop):
     def __init__(self, nom, lieu=[], armes=[], caisse=int):
         super().__init__(nom, lieu, armes,caisse)
         
+    def vendre_arme_ameliore (self,_hero,_item):
+        _hero.armes.pop()
+        _hero.armes.append(_item)
+        _hero.argent -= _item.prix 
+        # self.caisse +=_item.prix    
 class Armes ():
     def __init__(self,nom,atk,type,prix =int):
         self.nom = nom
@@ -164,7 +168,19 @@ class Objet():
 
     def popo_vie(self):
         self.vie +=50
-
+        self.inventaire.pop()
+    def popo_rage (self):
+        self.atk += 2
+        self.inventaire.pop()
+        
+    def popo_mana (self):
+        self.mana +=15
+        self.inventaire.pop()
+        
+    def popo_fleche (self):
+        self.fleche += 10
+        self.inventaire.pop()
+        
     
     def __repr__(self):
         return self.nom
