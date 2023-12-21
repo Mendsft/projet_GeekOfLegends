@@ -10,9 +10,9 @@ def intro ():
 def choix_boss(list_boss,list_enigme,boss_cimetiere):
     while True:
         if len(boss_cimetiere.lieu) != 3:
-            print(f"{list_boss} Voici les 3 boss que vous allez affronter \n")
+            print(f"{list_boss} Voici les {len(list_boss)} boss que vous allez affronter \n")
             boss_fight = random.choice(list_boss)
-            boss_cimetiere.lieu.append(boss_fight)
+            # boss_cimetiere.lieu.append(boss_fight)
             print(f"for this game, you will fight {boss_fight} \n")
             boss_fight.enigme = random.choice(list(list_enigme.items()))
             # print(boss_fight.enigme)
@@ -24,14 +24,14 @@ def choix_boss(list_boss,list_enigme,boss_cimetiere):
 def nom_hero(list_hero):
     print(f"Here you ar the hero you will play : {list_hero} \n")
     for hero in list_hero:
-        name_choice = input(f"Please choice their name {hero}  \n")
+        name_choice = input(f"Please choice their name {hero} : ")
         hero.nom = name_choice
-        print(f"The name of your {hero.type} is {hero.nom} \n")
+        print(f"\n The name of your {hero.type} is {hero.nom} \n")
     print(f"Here your hero's name : {list_hero}\n")
         
 def choix_posture(hero,boss):
     while True :
-        posture = str(input(f"Please choice your posture, fight(F) or defense(D) \n ")).lower().strip()
+        posture = str(input(f"Please choice your posture, fight(F) or defense(D) : ")).lower().strip()
         if posture == "f":
             hero.posture = "Attaque"
             print(f"Voici la posture de votre héros : {hero.posture} \n")
@@ -108,8 +108,10 @@ def verif_type_arme_ameliore(hero,choix,forgeron):
               
 def display_shopping(shop,list_heros,forgeron):
     for hero in list_heros :
-        print(f"Welcome {hero} to my {shop} dear heros hopeless {hero.type} \n")
-        print(hero)
+        print("\n---------------------------------------------")
+        print(f"Welcome {hero} to my {shop} dear heros hopeless {hero}")
+        print("---------------------------------------------")
+        print(f"You're type is {hero.type}")
         affichage = str(input(f"Enter what do you want to see : \n 1 : Armes \n 2 : Objets \n 3 : Forgeron \n 4 : EXIT \n 5 : VENTE \n You re typing here : ")).strip()
         
         while True : 
@@ -164,7 +166,7 @@ def display_shopping(shop,list_heros,forgeron):
                 elif choix == "5":
                     print(f"A reminder you're a {hero.type}")
                     print("---------------------------------------------")
-                    affichage = str(input(f"Enter what do you want to see : \n 1 : Armes \n 2 : Objets \n 3 : Forgeron \n 4 : EXIT \n  5 :VENTE \n You re typing here : ")).strip()
+                    affichage = str(input(f"Enter what do you want to see : \n 1 : Armes \n 2 : Objets \n 3 : Forgeron \n 4 : EXIT \n 5 : VENTE \n You re typing here : ")).strip()
                     print("---------------------------------------------")
                 else:
                     print(f"A reminder you're a {hero.type}")
@@ -219,17 +221,18 @@ def display_shopping(shop,list_heros,forgeron):
         print(hero.armes)
         print(hero.inventaire)
             
-def tour (_boss,list_hero,guerrier,mage,archer,cimetiere):
+def tour (_boss,list_hero,guerrier,mage,archer,cimetiere,cimetire_boss):
+
     boss = _boss
     nbr_tour = 1
-    reset_atk_guerrier = list_hero[0].atk
-    reset_atk_mage = list_hero[1].atk
-    reset_atk_archer = list_hero[2].atk
+    reset_atk_guerrier = guerrier.atk
+    reset_atk_mage = mage.atk
+    reset_atk_archer = archer.atk
     reset_atk_boss = boss.atk
     vie_base_boss = boss.vie
 
     while True :
-        if boss.vie > 0 and len(list_hero) >0 : 
+        if boss.vie > 0 and len(list_hero) > 0 : 
             print(f"---------------------- Debut du {nbr_tour} tours -------------------")
             for hero in list_hero:
                 print("------------------------------------------------------------------------")
@@ -251,14 +254,18 @@ def tour (_boss,list_hero,guerrier,mage,archer,cimetiere):
             for hero in list_hero:
                 hero.argent += 200
                 print(f"{hero} {hero.argent}")
+            cimetire_boss.lieu.append(boss)
             print("You fought the boss , gg")
             break    
         if boss.vie < (vie_base_boss * 0.12):
             enigme(boss,list_hero)
-        elif len(list_hero) == 0:
+        if len(list_hero) == 0:
             print("Everybody is dead .. You LOOSE ")
             print(cimetiere.lieu)
-            break
+            print(cimetire_boss.lieu)
+
+            return False
+
         else: 
             print("------------------------------------------------------- \n")
             print("Its the end of heros'tours , now it's BOSS TIME \n")
@@ -287,8 +294,10 @@ def attaque_defense_guerrier (_hero,_type_hero,_boss,_reset_atk_boss,posture,_re
         _type_hero.equiper_arme()
         if posture =="Attaque":
             _hero.attaque_guerrier(_boss)
-            print(f"Attaque du hero {_hero.atk} \n Vie du boss après attaque  :{_boss.vie} \n")
+            print(f"Attaque du hero {_type_hero.type} {_hero.atk} \n Vie du boss après attaque  :{_boss.vie} \n")
+            print(f"{_hero.atk} avant ")
             _hero.atk = _reset_atk_guerrier
+            print(f"{_hero.atk} apres ")
             if _boss.vie <= 0 :
                 return _boss.vie
         elif posture == "Défense":
@@ -301,8 +310,12 @@ def attaque_defense_mage (_hero,_type_hero,_boss,_reset_atk_boss,posture,_reset_
         _type_hero.equiper_arme()
         if posture =="Attaque":
             _hero.attaque_mage(_boss)
-            print(f"Attaque du hero {_hero.atk} \n Vie du boss après attaque  :{_boss.vie} \n")
+            print(f"Attaque de {_type_hero.type} {_hero.atk} \n Vie du boss après attaque  :{_boss.vie} \n")
+            print(f"{_hero.atk} av")
+            
             _hero.atk = _reset_atk_mage
+            print(f"{_hero.atk} ap ")
+            
             if _boss.vie <= 0 :
                 return _boss.vie
         elif posture == "Défense":
@@ -315,8 +328,12 @@ def attaque_defense_archer(_hero,_type_hero,_boss,_reset_atk_boss,posture,_reset
         _type_hero.equiper_arme()
         if posture =="Attaque":
             _hero.attaque_archer(_boss)
-            print(f"Attaque du hero {_hero.atk} \n Vie du boss après attaque  :{_boss.vie} \n")
+            print(f"Attaque du hero {_type_hero.type} {_hero.atk} \n Vie du boss après attaque  :{_boss.vie} \n")
+            print(f"{_hero.atk} av")
+            
             _hero.atk = _reset_atk_archer
+            print(f"{_hero.atk} ap")
+            
             if _boss.vie <= 0 :
                 return _boss.vie
         elif posture == "Défense":
