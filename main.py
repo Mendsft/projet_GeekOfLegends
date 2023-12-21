@@ -17,11 +17,17 @@ archer = cls.archer("Archer",[],200,[],"archer","",160,6,10)
 # Lieu 
 cimetiere =cls.Lieu("Cimetière ",[])
 shop = cls.Shop("Shop",["Vendeur"],[],[],100)
+forgeron = cls.Forgeron("Forgeron",["Ornn"],[],1000)
 
 # Armes 
 baguette = cls.Armes("archmage",12,"mage",100)
 epee = cls.Armes("Sabre",15,"guerrier",100)
 arc = cls.Armes("ShieldBow",14,"archer",100)
+
+# Armes Amélioré
+grosse_baguette =cls.ArmesAmerliore("ArchAnge",18,"mage",200)
+gross_epee = cls.ArmesAmerliore("Hache",20,"guerrier",200)
+gros_arc = cls.ArmesAmerliore("Bowlder",20,"archer",200)
 
 # Objets ◊
 potion_vie =  cls.Objet("Potion de vie","Augmente la vie de 50 PV ","guerrier,mage,archer",20)
@@ -36,6 +42,7 @@ list_boss = [sauron,chronos,lilith]
 list_heros = [guerrier,mage,archer]
 list_armes = [baguette,epee,arc]
 list_objets =[potion_vie,potion_rage,potion_mana,potion_fleche]
+list_armes_ameliore =[gros_arc,grosse_baguette,gross_epee]
 
 # Stocker les enigmes dans un dico afin de faire correspondre plus tard la keys la value OU créer une classe enigme 
 list_enigme = {
@@ -47,6 +54,7 @@ list_enigme = {
 def game ():
     fct.rajout(shop.armes,list_armes)
     fct.rajout(shop.objets,list_objets)
+    fct.rajout(forgeron.armes,list_armes_ameliore)
     fct.intro()
     boss_select=fct.choix_boss(list_boss,list_enigme) #pour avoir le nom du boss qui se trouve dans une liste
     fct.nom_hero(list_heros)

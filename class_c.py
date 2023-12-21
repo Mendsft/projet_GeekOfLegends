@@ -152,8 +152,8 @@ class Armes ():
         return self.nom
         
 class ArmesAmerliore(Armes):
-    def __init__(self, nom, atk, type):
-        super().__init__(nom, atk, type)
+    def __init__(self, nom, atk, type,prix =int):
+        super().__init__(nom, atk, type,prix)
         
 class Objet():
     def __init__(self,nom,effets,type = "",prix =int):

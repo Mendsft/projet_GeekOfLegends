@@ -3,7 +3,7 @@ import random
 def rajout (_shop_destination,_list_item):
     for item in _list_item :
         _shop_destination.append(item)
-
+    
 def intro ():
     print("\nHello to GeeksOfLegends , in this game you will fight a boss between 3 terrible monster\n")
     
@@ -187,15 +187,6 @@ def tour (boss,list_hero,guerrier,mage,archer,cimetiere,list_enigme,list_boss):
         mage.atk = reset_atk_mage
         boss.atk = reset_atk_boss
         
-# Rajout fonction display les personnags et leurs point de vie et atk a la fin de chaque tour 
-# rajout fonction display de l enigme 
-# rajout fonction display endgame 
-
-
-#rajout fonction utilisation d'armes
-# rajout fonction utilisation d'objets
-# rajout forgeron
-
 
 def attaque_defense_guerrier (_hero,_type_hero,_boss,_reset_atk_boss,posture):
     if _hero ==_type_hero :
@@ -209,6 +200,7 @@ def attaque_defense_guerrier (_hero,_type_hero,_boss,_reset_atk_boss,posture):
             _type_hero.equiper_objet()
             _boss.atk = _reset_atk_boss
             _hero.postures(_boss)
+            
 def attaque_defense_mage (_hero,_type_hero,_boss,_reset_atk_boss,posture):
     if _hero ==_type_hero :
         _type_hero.equiper_arme()
@@ -236,3 +228,12 @@ def attaque_defense_archer(_hero,_type_hero,_boss,_reset_atk_boss,posture):
             _boss.atk = _reset_atk_boss
             _hero.postures(_boss)
     
+# Rajout fonction display les personnags et leurs point de vie et atk a la fin de chaque tour 
+# rajout fonction display de l enigme 
+# rajout fonction display endgame 
+
+
+#rajout fonction utilisation d'armes
+# rajout fonction utilisation d'objets
+# rajout forgeron
+
