@@ -147,15 +147,17 @@ class Shop (Lieu):
         _hero.argent -= _item.prix 
         self.caisse +=_item.prix
         
-class Forgeron(Shop):
-    def __init__(self, nom, lieu=[], armes=[], caisse=int):
-        super().__init__(nom, lieu, armes,caisse)
+class Forgeron(Lieu):
+    def __init__(self, nom, lieu=[],armes = [],caisse = int):
+        super().__init__(nom, lieu)
+        self.armes = armes
+        self.caisse = caisse
         
     def vendre_arme_ameliore (self,_hero,_item):
         _hero.armes.pop()
         _hero.armes.append(_item)
         _hero.argent -= _item.prix 
-        # self.caisse +=_item.prix    
+        self.caisse +=_item.prix    
 class Armes ():
     def __init__(self,nom,atk,type,prix =int):
         self.nom = nom
