@@ -30,26 +30,26 @@ class heros():
     
     def equiper_arme(self):
         if len(self.armes) == 1:
-            print("j'ai une arme nen main")
+            print("j'ai une arme en main \n")
             for arme in self.armes :
                 self.atk = arme.atk
         else:
-            print("You don't have weapons ")
+            print("You don't have weapons \n")
     def equiper_objet (self):
         if len(self.inventaire) != 0:
-            print("vous avez des objets :")
+            print("vous avez des objets :\n")
             for objet in self.inventaire :
                 print(objet)
-            print("What do you want to use ? : ")
+            print("What do you want to use ? : \n")
         else:
-            print("You have nothings in your inventory")
+            print("You have nothings in your inventory \n")
             
     def vendre_armes (self):
         if len(self.armes) != 0 :
             for i in self.armes :
                 self.argent += (i.prix*0.7)
                 self.armes.remove(i)
-                print(f"Vous avez vendu {i} et vous avez mtn {self.argent}")
+                print(f"Vous avez vendu {i} et vous avez mtn {self.argent} \n")
                 break
         else :
             print(" you have ,nothing to sell ")
@@ -74,7 +74,7 @@ class guerrier (heros):
         self.type = type
         
     def attaque_guerrier(self,ennemi):
-        print(f"Voici le nombre de rage {self.rage}")
+        print(f"Voici le nombre de rage {self.rage} \n")
         if self.rage < 4:
             ennemi.vie -= self.atk
         else :
@@ -91,15 +91,15 @@ class mage (heros):
         self.type = type
         
     def attaque_mage(self,ennemi):
-        print(f"voici le nombre de mana {self.mana}")
+        print(f"voici le nombre de mana {self.mana} \n")
         if self.mana >= 2:
             self.mana -= 2
             ennemi.vie -= self.atk
         else:
-            print(f"You don't have enough mana {self.mana}")
+            print(f"You don't have enough mana {self.mana} \n")
             if self.mana < 2 :
                 self.mana += 7
-            print(f"You regen 7 mana , here your mana {self.mana} ")
+            print(f"You regen 7 mana , here your mana {self.mana} \n")
             
     def __repr__(self):
         return self.nom
@@ -110,15 +110,15 @@ class archer (heros):
         self.type = type
     
     def attaque_archer(self,ennemi):
-        print(f"voici le nombre de fleche {self.fleche}")
+        print(f"voici le nombre de fleche {self.fleche} \n")
         if self.fleche >= 2:
             self.fleche -= 2
             ennemi.vie -= self.atk
         else:
-            print(f"You don't have enought arrow {self.fleche}")
+            print(f"You don't have enought arrow {self.fleche} \n")
             if self.fleche < 2 :
                 self.fleche += 6
-            print(f"you regen your bow, you have 6 , here your bow {self.fleche}")
+            print(f"you regen your bow, you have 6 , here your bow {self.fleche} \n")
             
     def __repr__(self):
         return self.nom
