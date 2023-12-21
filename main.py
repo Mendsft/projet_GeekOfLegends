@@ -50,7 +50,7 @@ def game ():
     fct.intro()
     boss_select=fct.choix_boss(list_boss,list_enigme) #pour avoir le nom du boss qui se trouve dans une liste
     fct.nom_hero(list_heros)
-    fct.display_shopping(shop,list_heros,list_objets)
+    fct.display_shopping(shop,list_heros)
     fct.tour(boss_select,list_heros,guerrier,mage,archer,cimetiere,list_enigme,list_boss)
 
 game()

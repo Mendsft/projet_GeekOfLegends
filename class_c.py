@@ -35,7 +35,13 @@ class heros():
                 self.atk = arme.atk
         else:
             print("You don't have weapons ")
-        
+    def equiper_objet (self):
+        if len(self.inventaire) != 0:
+            print("vous avez des objets :")
+            for objet in self.inventaire :
+                print(objet)
+        else:
+            print("You have nothings in your inventory")
     def mourrir (self):
         if self.vie < 0 :
             print(f"{self.nom} is dead because he didn't have enough life point")  
