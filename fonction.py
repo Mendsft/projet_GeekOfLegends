@@ -17,16 +17,12 @@ def choix_boss(list_boss,list_enigme,boss_cimetiere):
             boss_fight.enigme = random.choice(list(list_enigme.items()))
             print(boss_fight.enigme)
             list_boss.remove(boss_fight)
-            
-            # boss_cimetiere.lieu.append(boss_fight)
             return boss_fight
-        
         elif len(boss_cimetiere.lieu) == 3  :
             break 
         
 def nom_hero(list_hero):
     print(f"Here you ar the hero you will play : {list_hero} \n")
-    
     for hero in list_hero:
         name_choice = input(f"Please choice their name {hero} ")
         hero.nom = name_choice
@@ -40,7 +36,6 @@ def choix_posture(hero,boss):
             hero.posture = "Attaque"
             print(f"Voici la posture de votre héros : {hero.posture}")
             hero.postures(boss)
-            # print(hero)
             return hero.posture
         elif posture == "d":
             hero.posture = "Défense"
@@ -58,17 +53,14 @@ def enigme(boss,list_heros):
             print(f"{boss} has loose 10 PV")
             boss.vie -= 10
             return boss.vie
-
     else :
         for hero in list_heros:
-            
             hero.vie -=20
             print(f"{hero} has loose 20 PV")
         boss.vie +=100
         print(f"{boss} has gained 100 PV")
 
 def verif_type_arme(hero,choix,shop):
-    
     if hero.type == choix.type and hero.argent >= choix.prix and len(hero.armes) == 0:
         shop.vendre_arme(hero,choix)
         print ("c'est ok ")
@@ -80,7 +72,6 @@ def verif_type_arme(hero,choix,shop):
         print("Vus possedez déjà une arme")
         
 def verif_type_objet(hero,choix,shop):
-    
     if hero.type in choix.type and hero.argent >= choix.prix:
         shop.vendre_objet(hero,choix)
         print ("c'est ok ")
@@ -104,7 +95,7 @@ def display_shopping(shop,list_heros,forgeron):
     for hero in list_heros :
         print(f"Welcome {hero} to my {shop} dear heros hopeless {hero.type} ")
         print(hero)
-        affichage = str(input(f"Enter what do you want to see : \n 1 : Armes \n 2 : Objets \n 3 : Forgeron \n 4 : EXIT \n ")).strip()
+        affichage = str(input(f"Enter what do you want to see : \n 1 : Armes \n 2 : Objets \n 3 : Forgeron \n 4 : EXIT \n 5 : VENTE \n ")).strip()
         
         while True : 
             if affichage == "1" :
@@ -126,12 +117,10 @@ def display_shopping(shop,list_heros,forgeron):
                     verif_type_arme(hero,choix,shop)    
                 elif choix == "4":
                     print(hero.type)
-                    affichage = str(input(f"Enter what do you want to see : \n 1 : Armes \n 2 : Objets \n 3 : Forgeron \n 4 : EXIT \n ")).strip()
+                    affichage = str(input(f"Enter what do you want to see : \n 1 : Armes \n 2 : Objets \n 3 : Forgeron \n 4 : EXIT \n 5 : VENTE \n ")).strip()
                 else :
                     print(hero.type)
-                    choix = str(input("Choose your item : "))
-                    
-                         
+                    choix = str(input("Choose your item : "))           
             elif affichage == "2" :
                 for (i, item) in enumerate(shop.objets, start=1):
                     print(i, item)
@@ -155,27 +144,29 @@ def display_shopping(shop,list_heros,forgeron):
                     verif_type_objet(hero,choix,shop)
                 elif choix == "5":
                     print(hero.type)
-                    affichage = str(input(f"Enter what do you want to see : \n 1 : Armes \n 2 : Objets \n 3 : Forgeron \n 4 : EXIT \n ")).strip()
+                    affichage = str(input(f"Enter what do you want to see : \n 1 : Armes \n 2 : Objets \n 3 : Forgeron \n 4 : EXIT \n  5 :VENTE \n")).strip()
                 else:
                     print(hero.type)
-                    
-                    choix = str(input("Choose your item : "))
-                           
+                    choix = str(input("Choose your item : "))     
             elif affichage == "3":
                 display_forgeron(forgeron,list_heros,shop)
-                break
-                
+                break 
             elif affichage == "4":
                 print("")
                 print(f"{hero} est  sorti du shop")
                 print("")
                 break
+            elif affichage == "5":
+                print(hero.armes)
+                vente = str(input(f"Vous voulez vous vednre {hero.armes} ? O/N ")).strip().lower()
+                if vente == "o" :
+                    hero.vendre_armes()
+                elif vente == "n":
+                    break
             else:
                 print(hero.type)
-                
-                affichage = str(input(f"Enter what do you want to see : \n 1 : Armes \n 2 : Objets \n 3 : Forgeron \n 4 : EXIT \n ")).strip()
-                
-                
+                affichage = str(input(f"Enter what do you want to see : \n 1 : Armes \n 2 : Objets \n 3 : Forgeron \n 4 : EXIT \n 5 : VENTE \n ")).strip()   
+   
     for hero in list_heros:
         print(hero.armes)
         print(hero.inventaire)
@@ -193,7 +184,6 @@ def display_forgeron (forgeron,list_heros,shop):
                 print(i+1,"Exit")
                 print("")
                 print(hero.type)
-                
                 choix = str(input("Choose your item : "))
                 if choix == "1":
                     choix = forgeron.armes[0]
@@ -212,7 +202,6 @@ def display_forgeron (forgeron,list_heros,shop):
                     choix = str(input("Choose your item : "))
             elif affichage == "2":
                 display_shopping(shop,list_heros,forgeron)
-
             elif affichage == "3":
                 print("")
                 print(f"{hero} est  sorti du forgeron")
@@ -220,12 +209,10 @@ def display_forgeron (forgeron,list_heros,shop):
                 break
             else :
                 print(hero.type)
-    
                 affichage = str(input(f"Enter what do you want to see : \n 1 : Armes \n 2 : Shop \n 3 : EXIT \n ")).strip()
-                
-    for hero in list_heros:
-        print(hero.armes)
-        print(hero.inventaire)
+            
+            print(hero.armes)
+            print(hero.inventaire)
             
 def tour (_boss,list_hero,guerrier,mage,archer,cimetiere,boss_cimetiere):
     boss = _boss
@@ -235,11 +222,8 @@ def tour (_boss,list_hero,guerrier,mage,archer,cimetiere,boss_cimetiere):
     reset_atk_archer = list_hero[2].atk
     reset_atk_boss = boss.atk
     vie_base_boss = boss.vie
-    
 
-        
     while True :
-
         if boss.vie > 0 and len(list_hero) >0 : 
             print(f"---------------------- Debut du {nbr_tour} tours -------------------")
             for hero in list_hero:
@@ -249,32 +233,21 @@ def tour (_boss,list_hero,guerrier,mage,archer,cimetiere,boss_cimetiere):
                 posture =choix_posture(hero,boss)
                 attaque_defense_guerrier(hero,guerrier,boss,reset_atk_boss,posture,reset_atk_guerrier)
                 if boss.vie <= 0 :
-                    
                     break
-                
                 attaque_defense_archer(hero,archer,boss,reset_atk_boss,posture,reset_atk_archer)
                 if boss.vie <= 0 :
                     break
-            
                 attaque_defense_mage(hero,mage,boss,reset_atk_boss,posture,reset_atk_mage) 
                 if boss.vie <= 0 :
                     break
-                
-                    
         if boss.vie <= 0:
             for hero in list_hero:
                 hero.argent += 200
                 print(f"{hero} {hero.argent}")
             print("You fought the boss , gg")
-            # boss_cimetiere.lieu.append(boss)
-            # print(boss_cimetiere.lieu)
-            break
-            
-        
-        if boss.vie < (vie_base_boss * 0.2):
+            break    
+        if boss.vie < (vie_base_boss * 0.12):
             enigme(boss,list_hero)
-            # if enigme == False :
-            #     break
         elif len(list_hero) == 0:
             print("Everybody is dead .. You LOOSE ")
             print(cimetiere.lieu)
@@ -300,7 +273,6 @@ def tour (_boss,list_hero,guerrier,mage,archer,cimetiere,boss_cimetiere):
     mage.atk = reset_atk_mage
     boss.atk = reset_atk_boss
     
-
 def attaque_defense_guerrier (_hero,_type_hero,_boss,_reset_atk_boss,posture,_reset_atk_guerrier):
     if _hero ==_type_hero :
         _type_hero.equiper_arme()
@@ -324,7 +296,6 @@ def attaque_defense_mage (_hero,_type_hero,_boss,_reset_atk_boss,posture,_reset_
             _hero.atk = _reset_atk_mage
             if _boss.vie <= 0 :
                 return _boss.vie
-
         elif posture == "Défense":
             _type_hero.equiper_objet()
             _boss.atk = _reset_atk_boss
@@ -350,7 +321,7 @@ def attaque_defense_archer(_hero,_type_hero,_boss,_reset_atk_boss,posture,_reset
 
 
 # rajout fonction utilisation d'objets
-# rajout liste boss , pour qu'a chaque mort de boss, le suivant vient 
-# mais entre chaque boss, faire une "pause" pour permettre d'ameliorer les armes
+
+# modif la fonction display shop : une fonction shop qui reunis 3/4 fonction 
 
 

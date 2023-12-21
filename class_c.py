@@ -41,12 +41,23 @@ class heros():
             for objet in self.inventaire :
                 print(objet)
             print("What do you want to use ? : ")
-            
         else:
             print("You have nothings in your inventory")
+            
+    def vendre_armes (self):
+        if len(self.armes) != 0 :
+            for i in self.armes :
+                self.argent += (i.prix*0.7)
+                self.armes.remove(i)
+                print(f"Vous avez vendu {i} et vous avez mtn {self.argent}")
+                break
+        else :
+            print(" you have ,nothing to sell ")
+                
     def mourrir (self):
         if self.vie < 0 :
             print(f"{self.nom} is dead because he didn't have enough life point")  
+            
     def postures(self,boss) :
         if self.posture == "Attaque":
             self.atk *= 1.4
@@ -65,13 +76,12 @@ class guerrier (heros):
     def attaque_guerrier(self,ennemi):
         print(f"Voici le nombre de rage {self.rage}")
         if self.rage < 4:
-            # self.atk *=1.25
             ennemi.vie -= self.atk
         else :
             self.atk *=1.25
             ennemi.vie -= self.atk
-            
         self.rage+=1
+        
     def __repr__(self):
         return self.nom
 class mage (heros):
@@ -80,18 +90,17 @@ class mage (heros):
         self.mana = mana
         self.type = type
         
-            
     def attaque_mage(self,ennemi):
         print(f"voici le nombre de mana {self.mana}")
         if self.mana >= 2:
             self.mana -= 2
             ennemi.vie -= self.atk
-            
         else:
             print(f"You don't have enough mana {self.mana}")
             if self.mana < 2 :
                 self.mana += 7
             print(f"You regen 7 mana , here your mana {self.mana} ")
+            
     def __repr__(self):
         return self.nom
 class archer (heros):
@@ -110,12 +119,14 @@ class archer (heros):
             if self.fleche < 2 :
                 self.fleche += 6
             print(f"you regen your bow, you have 6 , here your bow {self.fleche}")
+            
     def __repr__(self):
         return self.nom
 class Lieu ():
     def __init__(self,nom, lieu = []):
         self.nom = nom
         self.lieu = lieu 
+        
     def __repr__(self):
         return self.nom
 class Shop (Lieu):
@@ -169,6 +180,7 @@ class Objet():
     def popo_vie(self):
         self.vie +=50
         self.inventaire.pop()
+        
     def popo_rage (self):
         self.atk += 2
         self.inventaire.pop()
@@ -181,7 +193,6 @@ class Objet():
         self.fleche += 10
         self.inventaire.pop()
         
-    
     def __repr__(self):
         return self.nom
         

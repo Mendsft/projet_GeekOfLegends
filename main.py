@@ -58,18 +58,18 @@ def game ():
     fct.rajout(forgeron.armes,list_armes_ameliore)
     fct.intro()
     fct.nom_hero(list_heros)
-    fct.display_shopping(shop,list_heros,forgeron)
+    # fct.display_shopping(shop,list_heros,forgeron)
     
     # fct.display_forgeron(forgeron,list_heros,shop)
     print(list_boss)
     for boss in list_boss:
+        fct.display_shopping(shop,list_heros,forgeron)
         boss=fct.choix_boss(list_boss,list_enigme,boss_cimetier) #pour avoir le nom du boss qui se trouve dans une liste
         fct.tour(boss,list_heros,guerrier,mage,archer,cimetiere,boss_cimetier)
         # boss_cimetier.lieu.append(boss)
         print(f"{list_boss} ici dans la boucle main")
-        fct.display_shopping(shop,list_heros,forgeron)
        
-
+    fct.display_shopping(shop,list_heros,forgeron)
     boss=fct.choix_boss(list_boss,list_enigme,boss_cimetier) #pour avoir le nom du boss qui se trouve dans une liste
     fct.tour(boss,list_heros,guerrier,mage,archer,cimetiere,boss_cimetier)
     print(f"{list_boss} ici dans la boucle main")
@@ -77,11 +77,6 @@ def game ():
     
     print("Fin de tous les boss")
 game()
-# print(guerrier.atk)
-# guerrier.armes.append(epee)
-# print(guerrier.armes)
-# guerrier.equiper_arme()
-# print(guerrier.atk)
 
 
 
