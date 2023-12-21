@@ -103,7 +103,8 @@ def verif_type_arme_ameliore(hero,choix,forgeron):
 def display_shopping(shop,list_heros,forgeron):
     for hero in list_heros :
         print(f"Welcome {hero} to my {shop} dear heros hopeless {hero.type} ")
-        affichage = str(input(f"Enter what do you want to see : \n 1 : Armes \n 2 : Objets \n 3 : Exit \n ")).strip()
+        print(hero)
+        affichage = str(input(f"Enter what do you want to see : \n 1 : Armes \n 2 : Objets \n 3 : Forgeron \n 4 : EXIT \n ")).strip()
         
         while True : 
             if affichage == "1" :
@@ -112,6 +113,7 @@ def display_shopping(shop,list_heros,forgeron):
                     print(item.type)
                 print(i+1,"Exit")
                 print("")
+                print(hero.type)
                 choix = str(input("Choose your item : "))
                 if choix == "1":
                     choix = shop.armes[0]
@@ -123,8 +125,10 @@ def display_shopping(shop,list_heros,forgeron):
                     choix = shop.armes[2]
                     verif_type_arme(hero,choix,shop)    
                 elif choix == "4":
-                    affichage = str(input(f"Enter what do you want to see : \n 1 : Armes \n 2 : Objets \n 3 : Exit \n ")).strip()
+                    print(hero.type)
+                    affichage = str(input(f"Enter what do you want to see : \n 1 : Armes \n 2 : Objets \n 3 : Forgeron \n 4 : EXIT \n ")).strip()
                 else :
+                    print(hero.type)
                     choix = str(input("Choose your item : "))
                     
                          
@@ -134,6 +138,7 @@ def display_shopping(shop,list_heros,forgeron):
                     print(item.type)
                 print(i+1,"Exit")
                 print("")
+                print(hero.type)
                 choix = str(input("Choose your item : "))
                 if choix == "1":
                     choix = shop.objets[0]
@@ -149,29 +154,36 @@ def display_shopping(shop,list_heros,forgeron):
                     choix = shop.objets[3]
                     verif_type_objet(hero,choix,shop)
                 elif choix == "5":
-                    affichage = str(input(f"Enter what do you want to see : \n 1 : Armes \n 2 : Objets \n 3 : Exit \n ")).strip()
+                    print(hero.type)
+                    affichage = str(input(f"Enter what do you want to see : \n 1 : Armes \n 2 : Objets \n 3 : Forgeron \n 4 : EXIT \n ")).strip()
                 else:
+                    print(hero.type)
+                    
                     choix = str(input("Choose your item : "))
                            
             elif affichage == "3":
+                display_forgeron(forgeron,list_heros,shop)
+                break
+                
+            elif affichage == "4":
                 print("")
                 print(f"{hero} est  sorti du shop")
                 print("")
                 break
-            elif affichage == "4":
-                display_forgeron(forgeron,list_heros)
             else:
-                affichage = str(input(f"Enter what do you want to see : \n 1 : Armes \n 2 : Objets \n 3 : Exit \n ")).strip()
+                print(hero.type)
+                
+                affichage = str(input(f"Enter what do you want to see : \n 1 : Armes \n 2 : Objets \n 3 : Forgeron \n 4 : EXIT \n ")).strip()
                 
                 
     for hero in list_heros:
         print(hero.armes)
         print(hero.inventaire)
 
-def display_forgeron (forgeron,list_heros):
+def display_forgeron (forgeron,list_heros,shop):
     for hero in list_heros :
         print(f"Welcome {hero} to my {forgeron} dear heros hopeless {hero.type} ")
-        affichage = str(input(f"Enter what do you want to see : \n 1 : Armes \n 2 : Exit \n ")).strip()
+        affichage = str(input(f"Enter what do you want to see : \n 1 : Armes \n 2 : Shop \n 3 : EXIT \n ")).strip()
         
         while True : 
             if affichage == "1" :
@@ -180,6 +192,8 @@ def display_forgeron (forgeron,list_heros):
                     print(item.type)
                 print(i+1,"Exit")
                 print("")
+                print(hero.type)
+                
                 choix = str(input("Choose your item : "))
                 if choix == "1":
                     choix = forgeron.armes[0]
@@ -191,18 +205,23 @@ def display_forgeron (forgeron,list_heros):
                     choix = forgeron.armes[2]
                     verif_type_arme_ameliore(hero,choix,forgeron)    
                 elif choix == "4":
-                    affichage = str(input(f"Enter what do you want to see : \n 1 : Armes \n 2 : Exit \n ")).strip() 
+                    print(hero.type)
+                    affichage = str(input(f"Enter what do you want to see : \n 1 : Armes \n 2 : Shop \n 3 : EXIT \n ")).strip() 
                 else :
+                    print(hero.type)
                     choix = str(input("Choose your item : "))
-                    
-           
             elif affichage == "2":
+                display_shopping(shop,list_heros,forgeron)
+
+            elif affichage == "3":
                 print("")
                 print(f"{hero} est  sorti du forgeron")
                 print("")
                 break
             else :
-                affichage = str(input(f"Enter what do you want to see : \n 1 : Armes \n 2 : Exit \n ")).strip()
+                print(hero.type)
+    
+                affichage = str(input(f"Enter what do you want to see : \n 1 : Armes \n 2 : Shop \n 3 : EXIT \n ")).strip()
                 
     for hero in list_heros:
         print(hero.armes)
@@ -248,7 +267,7 @@ def tour (_boss,list_hero,guerrier,mage,archer,cimetiere,boss_cimetiere):
                 print(f"{hero} {hero.argent}")
             print("You fought the boss , gg")
             # boss_cimetiere.lieu.append(boss)
-            print(boss_cimetiere.lieu)
+            # print(boss_cimetiere.lieu)
             break
             
         

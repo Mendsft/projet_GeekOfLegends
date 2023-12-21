@@ -59,18 +59,21 @@ def game ():
     fct.intro()
     fct.nom_hero(list_heros)
     fct.display_shopping(shop,list_heros,forgeron)
+    
+    # fct.display_forgeron(forgeron,list_heros,shop)
     print(list_boss)
     for boss in list_boss:
         boss=fct.choix_boss(list_boss,list_enigme,boss_cimetier) #pour avoir le nom du boss qui se trouve dans une liste
         fct.tour(boss,list_heros,guerrier,mage,archer,cimetiere,boss_cimetier)
-        boss_cimetier.lieu.append(boss)
-        fct.display_forgeron(forgeron,list_heros)
+        # boss_cimetier.lieu.append(boss)
         print(f"{list_boss} ici dans la boucle main")
-    
+        fct.display_shopping(shop,list_heros,forgeron)
+       
+
     boss=fct.choix_boss(list_boss,list_enigme,boss_cimetier) #pour avoir le nom du boss qui se trouve dans une liste
     fct.tour(boss,list_heros,guerrier,mage,archer,cimetiere,boss_cimetier)
-    boss_cimetier.lieu.append(boss)
     print(f"{list_boss} ici dans la boucle main")
+    print(boss_cimetier.lieu)
     
     print("Fin de tous les boss")
 game()
