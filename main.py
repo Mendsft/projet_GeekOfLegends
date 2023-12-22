@@ -88,6 +88,7 @@ def game ():
         print('Interrupted')
             
 game()
+# print(fct.display_armes(list_armes))
 
 
 
