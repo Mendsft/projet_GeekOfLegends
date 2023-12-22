@@ -53,34 +53,40 @@ list_enigme = {
 }
 
 def game ():
-    fct.rajout(shop.armes,list_armes)
-    fct.rajout(shop.objets,list_objets)
-    fct.rajout(forgeron.armes,list_armes_ameliore)
-    fct.intro()
-    fct.nom_hero(list_heros)
-    # fct.display_shopping(shop,list_heros,forgeron)
     
-    # fct.display_forgeron(forgeron,list_heros,shop)
-   
-    print(list_boss)
-    for boss in list_boss:
-        if len(list_heros) == 0 :
-            break
+    try:
+        fct.rajout(shop.armes,list_armes)
+        fct.rajout(shop.objets,list_objets)
+        fct.rajout(forgeron.armes,list_armes_ameliore)
+        fct.intro()
+        fct.nom_hero(list_heros)
+        # fct.display_shopping(shop,list_heros,forgeron)
         
-        fct.display_shopping(shop,list_heros,forgeron)
-        boss=fct.choix_boss(list_boss,list_enigme,boss_cimetier) #pour avoir le nom du boss qui se trouve dans une liste
-        fct.tour(boss,list_heros,guerrier,mage,archer,cimetiere,boss_cimetier)
+        # fct.display_forgeron(forgeron,list_heros,shop)
+    
+        print(list_boss)
+        for boss in list_boss:
+            if len(list_heros) == 0 :
+                break
+            
+            fct.display_shopping(shop,list_heros,forgeron)
+            boss=fct.choix_boss(list_boss,list_enigme,boss_cimetier) #pour avoir le nom du boss qui se trouve dans une liste
+            fct.tour(boss,list_heros,guerrier,mage,archer,cimetiere,boss_cimetier)
 
-    if len(list_heros) == 0 :
-            return False 
-    else:
-        fct.display_shopping(shop,list_heros,forgeron)
-        boss=fct.choix_boss(list_boss,list_enigme,boss_cimetier) #pour avoir le nom du boss qui se trouve dans une liste
-        fct.tour(boss,list_heros,guerrier,mage,archer,cimetiere,boss_cimetier)
-        print(f"{list_boss} ici dans la boucle main")
-        print(boss_cimetier.lieu)
-
-        print("Fin de tous les boss")
+        if len(list_heros) == 0 :
+                return False 
+        else:
+            fct.display_shopping(shop,list_heros,forgeron)
+            boss=fct.choix_boss(list_boss,list_enigme,boss_cimetier) #pour avoir le nom du boss qui se trouve dans une liste
+            fct.tour(boss,list_heros,guerrier,mage,archer,cimetiere,boss_cimetier)
+            print(f"{list_boss} Voici la liste des boss en vie ")
+            print(f"{boss_cimetier.lieu} Voici la liste des boss en vie ")
+            print("------------------------------------------------------------------------")
+            print("Fin de tous les boss")
+            print("------------------------------------------------------------------------")
+    except KeyboardInterrupt:
+        print('Interrupted')
+            
 game()
 
 

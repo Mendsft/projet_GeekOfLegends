@@ -1,4 +1,6 @@
 import random
+import cmd
+
 
 def rajout (_shop_destination,_list_item):
     for item in _list_item :
@@ -24,9 +26,14 @@ def choix_boss(list_boss,list_enigme,boss_cimetiere):
 def nom_hero(list_hero):
     print(f"Here you ar the hero you will play : {list_hero} \n")
     for hero in list_hero:
-        name_choice = input(f"Please choice their name {hero} : ")
-        hero.nom = name_choice
-        print(f"\n The name of your {hero.type} is {hero.nom} \n")
+        try: 
+            name_choice = input(f"Please choice their name {hero} : ")
+            hero.nom = name_choice
+            print(f"\n The name of your {hero.type} is {hero.nom} \n")
+        except KeyboardInterrupt:
+            exit()
+
+            
     print(f"Here your hero's name : {list_hero}\n")
         
 def choix_posture(hero,boss):
@@ -81,7 +88,7 @@ def verif_type_arme(hero,choix,shop):
         print("---------------------------------------------")
         
 def verif_type_objet(hero,choix,shop):
-    if hero.type in choix.type and hero.argent >= choix.prix:
+    if hero.type in choix.type and hero.argent >= choix.prix  and len(hero.armes) == 0:
         shop.vendre_objet(hero,choix)
         print (f" You just bought {choix}  at {choix.prix} gold ")
     elif hero.type != choix.type :
@@ -140,7 +147,7 @@ def display_shopping(shop,list_heros,forgeron):
                     print("---------------------------------------------")
                 else :
                     print(f"A reminder you' re  a {hero.type}")
-                    choix = str(input("Choose your item : "))      
+                    choix = str(input("Choose your item : "))
             # le shop avec les objets
             elif affichage == "2" :
                 print("---------------------------------------------")              
@@ -197,7 +204,7 @@ def display_shopping(shop,list_heros,forgeron):
                     print("---------------------------------------------")
                 else: 
                     print(f"A reminder you're a {hero.type}")
-                    choix = str(input("Choose your item : "))                   
+                    choix = str(input("Choose your item : "))
             # Quitter le menu         
             elif affichage == "4":
                 print("")
@@ -215,7 +222,7 @@ def display_shopping(shop,list_heros,forgeron):
             # Reposer la question tant que l'utilisateur entre une mauvaise réponse 
             else:
                 print(hero.type)
-                affichage = str(input(f"Enter what do you want to see : \n 1 : Armes \n 2 : Objets \n 3 : Forgeron \n 4 : EXIT \n 5 : VENTE \n You re typing here : ")).strip()   
+                affichage = str(input(f"Enter what do you want to see : \n 1 : Armes \n 2 : Objets \n 3 : Forgeron \n 4 : EXIT \n 5 : VENTE \n You re typing here : ")).strip()  
    
     for hero in list_heros:
         print(hero.armes)
@@ -253,9 +260,11 @@ def tour (_boss,list_hero,guerrier,mage,archer,cimetiere,cimetire_boss):
         if boss.vie <= 0:
             for hero in list_hero:
                 hero.argent += 200
-                print(f"{hero} {hero.argent}")
+                print(f"\n{hero} {hero.argent}")
             cimetire_boss.lieu.append(boss)
+            print("------------------------------------------------------------------------")
             print("You fought the boss , gg")
+            print("------------------------------------------------------------------------")
             break    
         if boss.vie < (vie_base_boss * 0.12):
             enigme(boss,list_hero)
@@ -350,3 +359,10 @@ def attaque_defense_archer(_hero,_type_hero,_boss,_reset_atk_boss,posture,_reset
 
 # rajoute tableau avec esthétique  avec tabulate 
 
+
+if __name__ == '__main__':
+    try:
+        main()
+        
+    except KeyboardInterrupt:
+        print('Interrupted')      
