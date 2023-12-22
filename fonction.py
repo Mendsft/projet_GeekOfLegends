@@ -16,7 +16,7 @@ def choix_boss(list_boss,list_enigme,boss_cimetiere):
             print(f"{list_boss} Voici les {len(list_boss)} boss que vous allez affronter \n")
             boss_fight = random.choice(list_boss)
             # boss_cimetiere.lieu.append(boss_fight)
-            print(f"for this game, you will fight {boss_fight} \n")
+            print(f"for this game, you will fight {boss_fight} has {boss_fight.vie} and have {boss_fight.atk} ATK \n")
             boss_fight.enigme = random.choice(list(list_enigme.items()))
             # print(boss_fight.enigme)
             list_boss.remove(boss_fight)
@@ -122,6 +122,9 @@ def display_armes (_list_item):
     return table
 
 def display_recap(_list):
+    print("")
+    print("Tableau Récap")
+    print("")
     header = [["Nom","Type","Vie","Armes","Argent"]]
     for hero in _list:
         content=[hero.nom,hero.type,hero.vie,hero.armes,hero.argent]
@@ -143,6 +146,9 @@ def display_shopping(shop,list_heros,forgeron,):
                 print("---------------------------------------------")
                 for (i, item) in enumerate(shop.armes, start=1):
                     pass
+                print("")
+                print("Armes")
+                print("")
                 print(display_armes(shop.armes))
                 print(i+1," : Exit")
                 print("---------------------------------------------")
@@ -167,9 +173,12 @@ def display_shopping(shop,list_heros,forgeron,):
                     choix = str(input("Choose your item : "))
             # le shop avec les objets
             elif affichage == "2" :
+                print("---------------------------------------------")              
                 for (i, item) in enumerate(shop.objets, start=1):
                     pass
-                print("---------------------------------------------")              
+                print("")
+                print("Objets")
+                print("")
                 print(display_armes(shop.objets))
                 print(i+1," : Exit")
                 print("---------------------------------------------")
@@ -201,6 +210,9 @@ def display_shopping(shop,list_heros,forgeron,):
                 print("---------------------------------------------")
                 for (i, item) in enumerate(forgeron.armes, start=1):
                     pass
+                print("")
+                print("Forge")
+                print("")
                 print(display_armes(forgeron.armes))
                 print(i+1," : Exit")
                 print("---------------------------------------------")
@@ -292,7 +304,7 @@ def tour (_boss,list_hero,guerrier,mage,archer,cimetiere,cimetire_boss):
             print("Everybody is dead .. You LOOSE ")
             print(cimetiere.lieu)
             print(cimetire_boss.lieu)
-
+            print(display_recap(list_hero))
             return False
 
         else: 
@@ -300,15 +312,18 @@ def tour (_boss,list_hero,guerrier,mage,archer,cimetiere,cimetire_boss):
             print("Its the end of heros'tours , now it's BOSS TIME \n")
             aim = random.choice(list_hero)
             boss.atk_boss(aim)
-            if aim.vie <= 0 :
-                aim.mourrir()
-                print(f"{boss.nom} a tué {aim} ,Vie de la cible {aim.vie}\n ")
-                list_hero.remove(aim)
-                print(list_hero)
-                cimetiere.lieu.append(aim)
-                print(cimetiere.lieu)
+            if len(list_hero)!= 0:
+                if aim.vie <= 0 :
+                    aim.mourrir()
+                    print(f"{boss.nom} a tué {aim} ,Vie de la cible {aim.vie}\n ")
+                    list_hero.remove(aim)
+                    print(list_hero)
+                    cimetiere.lieu.append(aim)
+                    print(cimetiere.lieu)
+                else:
+                    print(f"Degats du boss {boss.atk} \nVie de la cible {aim.vie} \n") 
             else:
-                print(f"Degats du boss {boss.atk} \nVie de la cible {aim.vie} \n") 
+                break
             print(f"----------------------- Fin du tour {nbr_tour} ------------------------ \n")
             
         nbr_tour +=1
@@ -369,12 +384,4 @@ def attaque_defense_archer(_hero,_type_hero,_boss,_reset_atk_boss,posture,_reset
             _boss.atk = _reset_atk_boss
             _hero.postures(_boss)
 
-# Rajout fonction display les personnags et leurs point de vie et atk a la fin de chaque tour 
-# rajout fonction display de l enigme 
-# rajout fonction display endgame 
-
-
-# rajout fonction utilisation d'objets
-
-# rajoute tableau avec esthétique  avec tabulate 
 

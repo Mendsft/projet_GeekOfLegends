@@ -79,16 +79,18 @@ def game ():
             fct.display_shopping(shop,list_heros,forgeron)
             boss=fct.choix_boss(list_boss,list_enigme,boss_cimetier) #pour avoir le nom du boss qui se trouve dans une liste
             fct.tour(boss,list_heros,guerrier,mage,archer,cimetiere,boss_cimetier)
-            print(f"{list_boss} Voici la liste des boss en vie ")
-            print(f"{boss_cimetier.lieu} Voici la liste des boss en vie ")
+            print(f"{list_boss} Voici la liste des boss en vie \n")
+            print(f"{boss_cimetier.lieu} Voici la liste des boss Mort ")
             print("------------------------------------------------------------------------")
-            print("Fin de tous les boss")
+            print(fct.display_recap(list_heros))
+            print(cimetiere.lieu)
+            print("------------------------------------------------------------------------")
+            print("                | Fin de tous les boss |                ")
             print("------------------------------------------------------------------------")
     except KeyboardInterrupt:
         print('Interrupted')
             
 game()
 # print(fct.display_armes(list_armes))
-
 
 
